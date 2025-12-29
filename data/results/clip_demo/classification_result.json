@@ -1,0 +1,13 @@
+{
+  "image": "F:\\2_study\\-200_StudyPace\\Code\\python\\计算机视觉\\text01\\data\\images\\0.jpg",
+  "top_label": "a phone",
+  "top_prob": 0.8559955954551697,
+  "all_predictions": {
+    "a cat": 0.00925528071820736,
+    "a dog": 0.007687091361731291,
+    "a car": 0.06686604768037796,
+    "a tree": 0.0030718070920556784,
+    "a person": 0.05712422356009483,
+    "a phone": 0.8559955954551697
+  }
+}

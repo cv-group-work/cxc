@@ -1,0 +1,14 @@
+Qwen3-VL VQA Evaluation Report (API Version)
+==================================================
+
+Total samples: 100
+Correct predictions: 92
+Overall accuracy: 92.00%
+
+Accuracy by category:
+  counting: 100.00% (3/3)
+  attribute: 82.35% (14/17)
+  reading: 100.00% (4/4)
+  yesno: 100.00% (12/12)
+  identification: 90.00% (9/10)
+  other: 92.59% (50/54)

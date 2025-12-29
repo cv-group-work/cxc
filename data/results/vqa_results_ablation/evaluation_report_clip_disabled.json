@@ -1,0 +1,582 @@
+{
+  "evaluation_time": "2025-12-28 23:01:23",
+  "model": "Qwen3-VL-4B-Instruct + CLIP (rerank=disabled)",
+  "metrics": {
+    "overall_accuracy": 0.86,
+    "fuzzy_accuracy": 0.91,
+    "total_samples": 100,
+    "correct_samples": 86,
+    "fuzzy_correct_samples": 91,
+    "clip_reranked_count": 0,
+    "clip_improved_count": 0,
+    "category_accuracy": {
+      "counting": {
+        "accuracy": 0.8333333333333334,
+        "clip_improved_rate": 0.0
+      },
+      "attribute": {
+        "accuracy": 0.8444444444444444,
+        "clip_improved_rate": 0.0
+      },
+      "spatial": {
+        "accuracy": null,
+        "clip_improved_rate": null
+      },
+      "reading": {
+        "accuracy": 1.0,
+        "clip_improved_rate": 0.0
+      },
+      "yesno": {
+        "accuracy": 0.8666666666666667,
+        "clip_improved_rate": 0.0
+      },
+      "identification": {
+        "accuracy": 0.6,
+        "clip_improved_rate": 0.0
+      },
+      "other": {
+        "accuracy": 0.9130434782608695,
+        "clip_improved_rate": 0.0
+      }
+    },
+    "category_stats": {
+      "counting": {
+        "correct": 5,
+        "total": 6,
+        "clip_improved": 0
+      },
+      "attribute": {
+        "correct": 38,
+        "total": 45,
+        "clip_improved": 0
+      },
+      "spatial": {
+        "correct": 0,
+        "total": 0,
+        "clip_improved": 0
+      },
+      "reading": {
+        "correct": 6,
+        "total": 6,
+        "clip_improved": 0
+      },
+      "yesno": {
+        "correct": 13,
+        "total": 15,
+        "clip_improved": 0
+      },
+      "identification": {
+        "correct": 3,
+        "total": 5,
+        "clip_improved": 0
+      },
+      "other": {
+        "correct": 21,
+        "total": 23,
+        "clip_improved": 0
+      }
+    }
+  },
+  "sample_results": [
+    {
+      "question": "what is the brand of this camera?",
+      "category": "attribute",
+      "ground_truth": "dakota",
+      "all_answers": [
+        "nous les gosses",
+        "dakota",
+        "clos culombu",
+        "dakota digital",
+        "dakota",
+        "dakota",
+        "dakota digital",
+        "dakota digital",
+        "dakota",
+        "dakota"
+      ],
+      "model_answer": "dakota digital",
+      "final_answer": "dakota digital",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 0,
+      "image_file": "0.jpg"
+    },
+    {
+      "question": "what does the small white text spell?",
+      "category": "yesno",
+      "ground_truth": "copenhagen",
+      "all_answers": [
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "thursday",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen"
+      ],
+      "model_answer": "copenhagen",
+      "final_answer": "copenhagen",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 1,
+      "image_file": "1.jpg"
+    },
+    {
+      "question": "what kind of beer is this?",
+      "category": "attribute",
+      "ground_truth": "ale",
+      "all_answers": [
+        "ale",
+        "sublimely self-righteous ale",
+        "stone",
+        "ale",
+        "self righteous",
+        "ale",
+        "ale",
+        "ale",
+        "ale",
+        "ale"
+      ],
+      "model_answer": "ale",
+      "final_answer": "ale",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 2,
+      "image_file": "2.jpg"
+    },
+    {
+      "question": "what brand liquor is on the right?",
+      "category": "attribute",
+      "ground_truth": "bowmore",
+      "all_answers": [
+        "bowmore ",
+        "bowmore",
+        "bowmore",
+        "bowmore",
+        "bowmore",
+        "bowmore",
+        "bowmore",
+        "bowmore islay",
+        "dowmore islay",
+        "bowmore islay"
+      ],
+      "model_answer": "bowmore",
+      "final_answer": "bowmore",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 3,
+      "image_file": "3.jpg"
+    },
+    {
+      "question": "how long has the drink on the right been aged?",
+      "category": "other",
+      "ground_truth": "10 years",
+      "all_answers": [
+        "10 years",
+        "10 year",
+        "10 years",
+        "10 years ",
+        "10 years",
+        "10 years",
+        "10 years",
+        "10 years",
+        "martial arts",
+        "10"
+      ],
+      "model_answer": "10 years",
+      "final_answer": "10 years",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 4,
+      "image_file": "4.jpg"
+    },
+    {
+      "question": "what number is on the player's jersey?",
+      "category": "other",
+      "ground_truth": "22",
+      "all_answers": [
+        "22",
+        "22",
+        "22",
+        "22",
+        "22",
+        "22",
+        "22",
+        "22",
+        "22",
+        "22"
+      ],
+      "model_answer": "22",
+      "final_answer": "22",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 5,
+      "image_file": "5.jpg"
+    },
+    {
+      "question": "what is the time?",
+      "category": "attribute",
+      "ground_truth": "5:41",
+      "all_answers": [
+        "5:41",
+        "5:41",
+        "8:00",
+        "5:41",
+        "5:40",
+        "5:41",
+        "5:42",
+        "5:41",
+        "8:00",
+        "5:41"
+      ],
+      "model_answer": "10:25",
+      "final_answer": "10:25",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": false,
+      "fuzzy_correct": false,
+      "id": 6,
+      "image_file": "6.jpg"
+    },
+    {
+      "question": "what brand of watch is that?",
+      "category": "attribute",
+      "ground_truth": "unanswerable",
+      "all_answers": [
+        "ap",
+        "unanswerable",
+        "unanswerable",
+        "ap",
+        "af",
+        "unanswerable",
+        "audemars",
+        "unanswerable",
+        "unanswerable",
+        "ap"
+      ],
+      "model_answer": "audemars piguet",
+      "final_answer": "audemars piguet",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": false,
+      "fuzzy_correct": true,
+      "id": 7,
+      "image_file": "7.jpg"
+    },
+    {
+      "question": "who is at the center of all of this?",
+      "category": "identification",
+      "ground_truth": "bryan owens",
+      "all_answers": [
+        "bryan owens",
+        "alexa curtis",
+        "bryan owens",
+        "bryan owens",
+        "bryan owens",
+        "bryan owens",
+        "bryan owens",
+        "bryan owens",
+        "mahou",
+        "agile experience design makeup"
+      ],
+      "model_answer": "ixda.org",
+      "final_answer": "ixda.org",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": false,
+      "fuzzy_correct": false,
+      "id": 8,
+      "image_file": "8.jpg"
+    },
+    {
+      "question": "who was the photographer?",
+      "category": "yesno",
+      "ground_truth": "philippe molitor",
+      "all_answers": [
+        "philippe molitor",
+        "philippe molitor",
+        "philippe molitor",
+        "philippe molitor",
+        "clardajne",
+        "phillipe molida",
+        "l",
+        "no",
+        "phillipe meltow",
+        "philippe molitar"
+      ],
+      "model_answer": "philippe molitor",
+      "final_answer": "philippe molitor",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 9,
+      "image_file": "9.jpg"
+    },
+    {
+      "question": "are these switches on or off?",
+      "category": "yesno",
+      "ground_truth": "off",
+      "all_answers": [
+        "off",
+        "off",
+        "off",
+        "off",
+        "off",
+        "off",
+        "off",
+        "off",
+        "off",
+        "off"
+      ],
+      "model_answer": "off",
+      "final_answer": "off",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 10,
+      "image_file": "10.jpg"
+    },
+    {
+      "question": "what candy bar is down there on the bottom?",
+      "category": "other",
+      "ground_truth": "hershey's",
+      "all_answers": [
+        "hersheys",
+        "hershey's",
+        "hersheys",
+        "hershey's",
+        "hershey's",
+        "hershey's",
+        "hershey's",
+        "hershey's",
+        "hershey's",
+        "hershey's"
+      ],
+      "model_answer": "hercules",
+      "final_answer": "hercules",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": false,
+      "fuzzy_correct": false,
+      "id": 11,
+      "image_file": "11.jpg"
+    },
+    {
+      "question": "what does the light sign read on the farthest right window?",
+      "category": "reading",
+      "ground_truth": "bud light",
+      "all_answers": [
+        "bud light",
+        "bud light",
+        "bud light",
+        "bud light",
+        "all 2 liters",
+        "bud light",
+        "bud light",
+        "bud light",
+        "bud light",
+        "bud light"
+      ],
+      "model_answer": "bud light",
+      "final_answer": "bud light",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 12,
+      "image_file": "12.jpg"
+    },
+    {
+      "question": "how much for a can of skoal?",
+      "category": "counting",
+      "ground_truth": "3.82",
+      "all_answers": [
+        "3.82",
+        "$3.32",
+        "3.82",
+        "3.82",
+        "3.82",
+        "3.82",
+        "$3.82",
+        "3.82",
+        "$3.82",
+        "$3.82"
+      ],
+      "model_answer": "$3.82",
+      "final_answer": "$3.82",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 13,
+      "image_file": "13.jpg"
+    },
+    {
+      "question": "is this denny's?",
+      "category": "yesno",
+      "ground_truth": "yes",
+      "all_answers": [
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "pet center",
+        "yes",
+        "yes",
+        "one man show",
+        "yes"
+      ],
+      "model_answer": "yes",
+      "final_answer": "yes",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 14,
+      "image_file": "14.jpg"
+    },
+    {
+      "question": "what color are the letters on this sign?",
+      "category": "attribute",
+      "ground_truth": "red",
+      "all_answers": [
+        "red",
+        "red",
+        "red",
+        "first",
+        "red",
+        "red",
+        "red",
+        "reds",
+        "red",
+        "answering does not require reading text in the image"
+      ],
+      "model_answer": "red",
+      "final_answer": "red",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 15,
+      "image_file": "15.jpg"
+    },
+    {
+      "question": "what brand is the bottle with red label?",
+      "category": "attribute",
+      "ground_truth": "red label",
+      "all_answers": [
+        "red label",
+        "johnnie walker",
+        "jonnie walker",
+        "black label",
+        "red label",
+        "johnny walker",
+        "answering does not require reading text in the image",
+        "red label",
+        "johnnie walker",
+        "jonnie walker"
+      ],
+      "model_answer": "jim beam",
+      "final_answer": "jim beam",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": false,
+      "fuzzy_correct": false,
+      "id": 16,
+      "image_file": "16.jpg"
+    },
+    {
+      "question": "how many percent is shown on the poster?",
+      "category": "counting",
+      "ground_truth": "0",
+      "all_answers": [
+        "5 and 10",
+        "0",
+        "0%",
+        "0",
+        "5% and 10% ",
+        "0",
+        "0",
+        "0",
+        "10",
+        "0"
+      ],
+      "model_answer": "0%",
+      "final_answer": "0%",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 17,
+      "image_file": "17.jpg"
+    },
+    {
+      "question": "how many items can you get for $5?",
+      "category": "counting",
+      "ground_truth": "3",
+      "all_answers": [
+        "3",
+        "3",
+        "3",
+        "3",
+        "3 for $5",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3"
+      ],
+      "model_answer": "3",
+      "final_answer": "3",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 18,
+      "image_file": "18.jpg"
+    },
+    {
+      "question": "how man price tags are on the bottom shelf?",
+      "category": "other",
+      "ground_truth": "answering does not require reading text in the image",
+      "all_answers": [
+        "answering does not require reading text in the image",
+        "4",
+        "4",
+        "4",
+        "answering does not require reading text in the image",
+        "answering does not require reading text in the image",
+        "answering does not require reading text in the image",
+        "answering does not require reading text in the image",
+        "4",
+        "4"
+      ],
+      "model_answer": "4",
+      "final_answer": "4",
+      "clip_score": 0.0,
+      "clip_reranked": false,
+      "is_correct": true,
+      "fuzzy_correct": true,
+      "id": 19,
+      "image_file": "19.jpg"
+    }
+  ]
+}

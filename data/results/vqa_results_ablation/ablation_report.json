@@ -1,0 +1,168 @@
+{
+  "evaluation_time": "2025-12-28 23:03:50",
+  "baseline": {
+    "model": "Qwen3-VL-4B-Instruct",
+    "use_clip_rerank": false,
+    "metrics": {
+      "overall_accuracy": 0.86,
+      "fuzzy_accuracy": 0.91,
+      "total_samples": 100,
+      "correct_samples": 86,
+      "fuzzy_correct_samples": 91,
+      "clip_reranked_count": 0,
+      "clip_improved_count": 0,
+      "category_accuracy": {
+        "counting": {
+          "accuracy": 0.8333333333333334,
+          "clip_improved_rate": 0.0
+        },
+        "attribute": {
+          "accuracy": 0.8444444444444444,
+          "clip_improved_rate": 0.0
+        },
+        "spatial": {
+          "accuracy": null,
+          "clip_improved_rate": null
+        },
+        "reading": {
+          "accuracy": 1.0,
+          "clip_improved_rate": 0.0
+        },
+        "yesno": {
+          "accuracy": 0.8666666666666667,
+          "clip_improved_rate": 0.0
+        },
+        "identification": {
+          "accuracy": 0.6,
+          "clip_improved_rate": 0.0
+        },
+        "other": {
+          "accuracy": 0.9130434782608695,
+          "clip_improved_rate": 0.0
+        }
+      },
+      "category_stats": {
+        "counting": {
+          "correct": 5,
+          "total": 6,
+          "clip_improved": 0
+        },
+        "attribute": {
+          "correct": 38,
+          "total": 45,
+          "clip_improved": 0
+        },
+        "spatial": {
+          "correct": 0,
+          "total": 0,
+          "clip_improved": 0
+        },
+        "reading": {
+          "correct": 6,
+          "total": 6,
+          "clip_improved": 0
+        },
+        "yesno": {
+          "correct": 13,
+          "total": 15,
+          "clip_improved": 0
+        },
+        "identification": {
+          "correct": 3,
+          "total": 5,
+          "clip_improved": 0
+        },
+        "other": {
+          "correct": 21,
+          "total": 23,
+          "clip_improved": 0
+        }
+      }
+    }
+  },
+  "with_clip_rerank": {
+    "model": "Qwen3-VL-4B-Instruct + CLIP",
+    "use_clip_rerank": true,
+    "metrics": {
+      "overall_accuracy": 0.9,
+      "fuzzy_accuracy": 0.94,
+      "total_samples": 100,
+      "correct_samples": 90,
+      "fuzzy_correct_samples": 94,
+      "clip_reranked_count": 5,
+      "clip_improved_count": 5,
+      "category_accuracy": {
+        "counting": {
+          "accuracy": 0.8333333333333334,
+          "clip_improved_rate": 0.0
+        },
+        "attribute": {
+          "accuracy": 0.8666666666666667,
+          "clip_improved_rate": 0.044444444444444446
+        },
+        "spatial": {
+          "accuracy": null,
+          "clip_improved_rate": null
+        },
+        "reading": {
+          "accuracy": 1.0,
+          "clip_improved_rate": 0.0
+        },
+        "yesno": {
+          "accuracy": 0.9333333333333333,
+          "clip_improved_rate": 0.06666666666666667
+        },
+        "identification": {
+          "accuracy": 0.8,
+          "clip_improved_rate": 0.0
+        },
+        "other": {
+          "accuracy": 0.9565217391304348,
+          "clip_improved_rate": 0.08695652173913043
+        }
+      },
+      "category_stats": {
+        "counting": {
+          "correct": 5,
+          "total": 6,
+          "clip_improved": 0
+        },
+        "attribute": {
+          "correct": 39,
+          "total": 45,
+          "clip_improved": 2
+        },
+        "spatial": {
+          "correct": 0,
+          "total": 0,
+          "clip_improved": 0
+        },
+        "reading": {
+          "correct": 6,
+          "total": 6,
+          "clip_improved": 0
+        },
+        "yesno": {
+          "correct": 14,
+          "total": 15,
+          "clip_improved": 1
+        },
+        "identification": {
+          "correct": 4,
+          "total": 5,
+          "clip_improved": 0
+        },
+        "other": {
+          "correct": 22,
+          "total": 23,
+          "clip_improved": 2
+        }
+      }
+    }
+  },
+  "improvement": {
+    "accuracy_delta": 0.040000000000000036,
+    "clip_reranked_count": 5,
+    "clip_improved_count": 5
+  }
+}
