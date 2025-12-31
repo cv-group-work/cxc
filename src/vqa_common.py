@@ -1,712 +1,610 @@
 """
-VQA 公共功能模块
-================
+VQA 公共功能模块 (LangChain版本)
+================================
 
-本文件包含VQA评估系统的公共功能模块，用于被多个评估脚本共享。
+本文件包含VQA评估系统的公共功能模块，使用LangChain简化API调用。
 主要功能包括：
 
-1. 模型初始化和客户端配置
+1. 模型初始化和客户端配置 (LangChain)
 2. 数据加载和预处理
 3. 文本处理和标准化
 4. 问题分类系统
-5. 图像处理工具
-6. VQA推理引擎
-7. 评估指标计算
-8. 可视化和报告生成
+5. VQA推理引擎 (LangChain简化版)
+6. 评估指标计算
+7. 可视化和报告生成
 
 设计原则：
+- 使用LangChain统一API调用接口
 - 模块化：每个函数负责单一功能
 - 可复用：支持在多个脚本中共享使用
-- 可扩展：便于后续功能扩展和修改
-- 兼容性：支持不同评估系统的需求
 """
 
-# 导入所需的标准库和第三方库
-import json           # 用于处理JSON数据
-import os            # 用于文件和目录操作
-import re            # 用于正则表达式处理
-from PIL import Image  # 用于图像处理
-import matplotlib.pyplot as plt  # 用于数据可视化
-import matplotlib.font_manager as fm  # 用于字体管理
-import numpy as np    # 用于数值计算
-from datetime import datetime  # 用于处理日期和时间
-from openai import OpenAI  # 用于调用OpenAI兼容的API
-from io import BytesIO  # 用于处理字节流
-import base64  # 用于base64编码
-import time  # 用于控制时间间隔
+import json
+import os
+import re
+from PIL import Image, ImageDraw, ImageFont
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+import numpy as np
+from io import BytesIO
+import base64
 
-# 设置matplotlib后端为非交互式模式，适合在服务器环境中使用
 plt.switch_backend('Agg')
 
-# ====================
-# 中文字体配置
-# ====================
+def find_chinese_font():
+    """查找可用的中文字体"""
+    import matplotlib.font_manager as fm
+    from pathlib import Path
 
-# 获取系统中可用的所有字体名称列表
-available_fonts = [f.name for f in fm.fontManager.ttflist]
-# 定义常用的中文字体列表，按优先级排序
-chinese_fonts = ['SimHei', 'Microsoft YaHei', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'Droid Sans Fallback']
-# 初始化选中的字体变量
-selected_font = None
+    # 系统字体路径
+    font_dirs = [
+        Path("C:/Windows/Fonts"),
+        Path("/usr/share/fonts"),
+        Path.home() / ".fonts"
+    ]
 
-# 遍历中文字体列表，选择系统中可用的第一个字体
-for font in chinese_fonts:
-    if font in available_fonts:
-        selected_font = font  # 找到可用字体，赋值给selected_font
-        break  # 找到后立即退出循环
+    # 纯中文字体列表（按优先级）
+    chinese_font_names = [
+        'Microsoft YaHei', 'MicrosoftYaHei', 'msyh',
+        'SimHei', 'simhei', 'hei',
+        'Noto Sans CJK SC', 'NotoSansCJKsc',
+        'WenQuanYi Micro Hei', 'wqy-microhei',
+        'Droid Sans Fallback', 'droidfallback',
+        'PingFang SC', 'PingFang', 'pingfang',
+        'Heiti SC', 'heiti',
+        'Source Han Sans CN', 'sourcehansanscn',
+        'AR PL UMing CN', 'umingcn',
+        'AR PL Sungti CN', 'sungti',
+    ]
 
-# 根据是否找到合适的中文字体进行配置
-if selected_font:
-    # 如果找到合适的中文字体，设置为matplotlib的默认字体
-    plt.rcParams['font.family'] = selected_font
-    print(f"使用中文字体: {selected_font}")  # 打印使用的字体名称
-else:
-    # 如果没有找到合适的中文字体，尝试使用系统默认中文字体
-    print("未找到合适的中文字体，尝试使用系统默认中文字体")
-    # 设置字体列表，包含多种备选字体
-    plt.rcParams['font.sans-serif'] = ['SimHei', 'Arial Unicode MS', 'DejaVu Sans']
-    # 设置解决负号显示问题，确保负号能正确显示
+    # 查找系统中可用的字体文件
+    font_files = []
+    for font_dir in font_dirs:
+        if font_dir.exists():
+            for ext in ['.ttf', '.ttc', '.otf']:
+                font_files.extend(font_dir.glob(f'*{ext}'))
+
+    # 检测每个字体文件
+    for font_file in font_files:
+        try:
+            font_name = font_file.stem.lower()
+            for cn_font in chinese_font_names:
+                if cn_font.lower() in font_name:
+                    return str(font_file)
+        except:
+            continue
+
+    # 如果没找到，返回None
+    return None
+
+# 尝试加载中文字体
+selected_font_path = find_chinese_font()
+
+if selected_font_path:
+    try:
+        fm.fontManager.addfont(selected_font_path)
+        font_prop = fm.FontProperties(fname=selected_font_path)
+        font_name = fm.FontProperties(fname=selected_font_path).get_name()
+        plt.rcParams['font.family'] = font_name
+        plt.rcParams['font.sans-serif'] = [font_name]
+        print(f"使用中文字体: {font_name} ({selected_font_path})")
+    except Exception as e:
+        print(f"字体加载失败: {e}")
+        selected_font_path = None
+
+# 如果无法加载中文字体，使用默认设置
+if not selected_font_path:
+    print("未找到合适的中文字体，将使用系统默认")
     plt.rcParams['axes.unicode_minus'] = False
 
+# 设置默认字体属性函数（用于中文文本）
+def get_chinese_font():
+    """获取中文字体属性"""
+    if selected_font_path:
+        return fm.FontProperties(fname=selected_font_path)
+    return None
 
-# =====================
-# 1. 模型和客户端初始化
-# =====================
 
-def load_model(api_key):
+try:
+    from langchain_openai import ChatOpenAI
+    from langchain_core.messages import HumanMessage, SystemMessage
+    from langchain_core.tools import tool
+    LANGCHAIN_AVAILABLE = True
+except ImportError:
+    LANGCHAIN_AVAILABLE = False
+    print("LangChain未安装，将使用原始OpenAI API")
+
+
+def image_to_base64(image_path):
+    """将图像转换为base64编码"""
+    try:
+        with Image.open(image_path) as img:
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            max_size = 1024
+            if max(img.size) > max_size:
+                ratio = max_size / max(img.size)
+                new_size = tuple(int(dim * ratio) for dim in img.size)
+                img = img.resize(new_size, Image.Resampling.LANCZOS)
+            buffered = BytesIO()
+            img.save(buffered, format="JPEG", quality=85)
+            return base64.b64encode(buffered.getvalue()).decode('utf-8')
+    except Exception as e:
+        print(f"图片处理错误 {image_path}: {e}")
+        return None
+
+
+def load_model(api_key, model_name="qwen3-vl-8b-instruct"):
     """
-    初始化Qwen3-VL API客户端
-    
+    初始化Qwen3-VL客户端 (LangChain或原生API)
+
     Args:
         api_key (str): DashScope API密钥
-    
+        model_name (str): 模型名称
+
     Returns:
-        tuple: (client, model_name) - API客户端和模型名称
+        tuple: (llm, model_name) - LangChain LLM对象和模型名称
     """
-    # 打印初始化信息
-    print("初始化 Qwen3-VL API 客户端")
-    # 创建OpenAI兼容的客户端实例，配置连接到阿里云DashScope服务
-    client = OpenAI(
-        api_key=api_key,  # 使用提供的API密钥进行身份验证
-        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"  # DashScope API的兼容模式端点
-    )
-    # 指定要使用的Qwen3-VL模型版本
-    model_name = "qwen3-vl-8b-instruct"
-    # 打印使用的模型名称
-    print(f"使用模型: {model_name}")
-    # 返回客户端实例和模型名称
-    return client, model_name
+    print("初始化 Qwen3-VL 客户端...")
+
+    if LANGCHAIN_AVAILABLE:
+        llm = ChatOpenAI(
+            api_key=api_key,
+            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+            model=model_name,
+            temperature=0.1,
+            max_tokens=128
+        )
+        print(f"LangChain客户端已创建，使用模型: {model_name}")
+    else:
+        from openai import OpenAI
+        llm = OpenAI(
+            api_key=api_key,
+            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
+        )
+        print(f"原生OpenAI客户端已创建，使用模型: {model_name}")
+
+    return llm, model_name
 
 
-# =====================
-# 2. 数据加载和预处理
-# =====================
+def vqa_inference(llm, model_name, image_path, question):
+    """
+    视觉问答推理函数 (LangChain简化版)
+
+    使用LangChain的标准化接口进行VQA推理。
+
+    Args:
+        llm: LangChain LLM客户端或原生OpenAI客户端
+        model_name (str): 模型名称
+        image_path (str): 图像路径
+        question (str): 问题文本
+
+    Returns:
+        str: 模型回答或错误信息
+    """
+    try:
+        base64_image = image_to_base64(image_path)
+        if not base64_image:
+            return "错误: 无法处理图片"
+
+        full_question = f"{question}\n请简短回答，只回答关键信息，不需要解释。"
+
+        if LANGCHAIN_AVAILABLE:
+            message = HumanMessage(
+                content=[
+                    {"type": "text", "text": full_question},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
+                ]
+            )
+            response = llm.invoke([message])
+            return response.content.strip()
+        else:
+            messages = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}},
+                        {"type": "text", "text": full_question}
+                    ]
+                }
+            ]
+            response = llm.chat.completions.create(
+                model=model_name,
+                messages=messages,
+                max_tokens=128,
+                temperature=0.1
+            )
+            return response.choices[0].message.content.strip()
+
+    except Exception as e:
+        print(f"API调用错误: {e}")
+        return f"错误: {str(e)}"
+
 
 def load_metadata(data_dir):
-    """
-    加载数据集元数据
-    
-    Args:
-        data_dir (str): 数据目录路径
-    
-    Returns:
-        list: 包含图像、问题和答案的元数据列表
-    """
-    # 构建metadata.json文件的完整路径
+    """加载数据集元数据"""
     metadata_path = os.path.join(data_dir, "metadata.json")
-    # 打开并读取metadata.json文件，使用utf-8编码
     with open(metadata_path, 'r', encoding='utf-8') as f:
-        # 将JSON数据解析为Python对象
         metadata = json.load(f)
-    # 打印加载的元数据数量
     print(f"加载了 {len(metadata)} 条元数据")
-    # 返回加载的元数据列表
     return metadata
 
 
-# =====================
-# 3. 文本处理和标准化
-# =====================
-
 def normalize_answer(answer):
-    """
-    答案标准化处理
-    
-    对模型生成的答案进行清理和标准化，便于后续的匹配比较。
-    处理包括：转小写、去除标点、标准化空格等。
-    
-    Args:
-        answer (str): 原始答案文本
-    
-    Returns:
-        str: 标准化后的答案文本
-    """
-    # 如果答案为空，直接返回空字符串
+    """答案标准化处理"""
     if not answer:
         return ""
-    # 将答案转换为小写并去除首尾空格
     answer = answer.lower().strip()
-    # 使用正则表达式去除所有标点符号，用空格替代
     answer = re.sub(r'[^\w\s]', ' ', answer)
-    # 使用正则表达式将多个连续空格替换为单个空格
     answer = re.sub(r'\s+', ' ', answer)
-    # 去除处理后可能产生的首尾空格
     return answer.strip()
 
 
 def classify_question(question):
-    """
-    问题类型自动分类
-    
-    基于关键词匹配对VQA问题进行分类，
-    支持计数、属性、空间关系、文字识别等类型。
-    
-    Args:
-        question (str): 问题文本
-    
-    Returns:
-        str: 问题类型标签
-    """
-    # 将问题转换为小写，方便后续关键词匹配
+    """问题类型自动分类"""
     q = question.lower()
-    
-    # 定义各类问题的关键词字典，键为问题类型，值为关键词列表
+
     categories = {
-        # 计数类问题关键词
         'counting': ['how many', '多少', 'count', 'number of', '数量', 'how much'],
-        # 属性类问题关键词
-        'attribute': ['what color', 'what brand', 'what type', 'what kind', 'what year', 
+        'attribute': ['what color', 'what brand', 'what type', 'what kind', 'what year',
                       'what time', '颜色', '品牌', '类型', '年份', '时间', 'what is the'],
-        # 空间关系类问题关键词
         'spatial': ['where', 'what is on the left', 'what is on the right', 'what is in front',
                     '位置', '左边', '右边', '前面', '后面', '上面', '下面'],
-        # 文字识别类问题关键词
         'reading': ['what does it say', 'what does the sign say', 'what does the text say',
                     'what is written', 'read', '读取', '文字', '写的', '说什么', 'what word'],
-        # 是非类问题关键词
         'yesno': ['is this', 'are these', 'was the', 'does her shirt say', '是否', '是不是',
                   'does the', 'is there', 'are there'],
-        # 识别类问题关键词
         'identification': ['who is', 'what is the name', 'what is this', 'who was',
                           '谁', '名称', '是什么', 'what does']
     }
-    
-    # 遍历所有问题类型和对应的关键词列表
+
     for cat, keywords in categories.items():
-        # 检查问题中是否包含当前类型的任何一个关键词
         if any(kw in q for kw in keywords):
-            return cat  # 如果包含，返回当前问题类型
-    # 如果没有匹配到任何类型，返回'other'表示其他类型
+            return cat
     return 'other'
 
 
-# =====================
-# 4. 图像处理工具
-# =====================
-
-def image_to_base64(image_path):
-    """
-    将图像转换为base64编码
-    
-    用于API调用时的图像传输。
-    包含图像预处理：格式转换、尺寸调整、质量优化等。
-    
-    Args:
-        image_path (str): 图像文件路径
-    
-    Returns:
-        str: base64编码的图像字符串，失败返回None
-    """
-    try:
-        # 打开图像文件
-        with Image.open(image_path) as img:
-            # 将图像转换为RGB格式，确保与API兼容
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
-            
-            # 设置图像最大尺寸限制为1024像素
-            max_size = 1024
-            # 检查图像是否超过最大尺寸
-            if max(img.size) > max_size:
-                # 计算缩放比例
-                ratio = max_size / max(img.size)
-                # 计算新的图像尺寸
-                new_size = tuple(int(dim * ratio) for dim in img.size)
-                # 使用LANCZOS插值算法调整图像大小，这是一种高质量的图像缩放算法
-                img = img.resize(new_size, Image.Resampling.LANCZOS)
-            
-            # 创建BytesIO对象，用于临时存储图像数据
-            buffered = BytesIO()
-            # 将图像保存为JPEG格式到BytesIO对象，质量设置为85%（平衡大小和清晰度）
-            img.save(buffered, format="JPEG", quality=85)
-            # 将BytesIO对象中的数据转换为base64编码的字符串
-            img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
-            # 返回base64编码的图像字符串
-            return img_str
-    except Exception as e:
-        # 捕获并打印图像处理过程中可能出现的错误
-        print(f"图片处理错误 {image_path}: {e}")
-        # 处理失败时返回None
-        return None
-
-
-# =====================
-# 5. VQA推理引擎
-# =====================
-
-def vqa_inference(client, model_name, image_path, question, max_retries=3):
-    """
-    视觉问答推理函数
-    
-    调用Qwen3-VL API进行图像问答推理。
-    包含错误处理、重试机制和响应解析。
-    
-    Args:
-        client: API客户端
-        model_name (str): 模型名称
-        image_path (str): 图像路径
-        question (str): 问题文本
-        max_retries (int): 最大重试次数
-    
-    Returns:
-        str: 模型回答或错误信息
-    """
-    # 尝试多次调用API，处理可能的临时错误
-    for attempt in range(max_retries):
-        try:
-            # 对图像进行预处理并转换为base64编码
-            base64_image = image_to_base64(image_path)
-            # 检查图像处理是否成功
-            if not base64_image:
-                return f"错误: 无法处理图片"
-            
-            # 构建API调用的消息格式
-            messages = [
-                {
-                    "role": "user",  # 消息角色为用户
-                    "content": [
-                        # 图像URL部分，包含base64编码的图像数据
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_image}"  # 数据URL格式
-                            }
-                        },
-                        # 文本问题部分
-                        {
-                            "type": "text",
-                            # 问题文本，添加提示要求简短回答
-                            "text": question + "\n请简短回答，只回答关键信息，不需要解释。"
-                        }
-                    ]
-                }
-            ]
-            
-            # 调用API进行视觉问答推理
-            response = client.chat.completions.create(
-                model=model_name,  # 指定使用的模型
-                messages=messages,  # 传递构建好的消息
-                max_tokens=128,    # 限制回答长度，防止回答过长
-                temperature=0.1,   # 设置低温度，确保回答更加稳定和确定性
-                stream=False       # 禁用流式输出，获取完整回答后再返回
-            )
-            
-            # 从API响应中提取模型回答
-            answer = response.choices[0].message.content.strip()
-            # 返回模型回答
-            return answer
-            
-        except Exception as e:
-            # 捕获API调用过程中可能出现的任何异常
-            print(f"API调用错误 (尝试 {attempt + 1}/{max_retries}): {e}")
-            # 检查是否还有重试机会
-            if attempt < max_retries - 1:
-                time.sleep(2)  # 等待2秒后重试
-            else:
-                # 所有重试都失败，返回错误信息
-                return f"错误: {str(e)}"
-
-
-# =====================
-# 6. 评估指标计算
-# =====================
-
 def compute_exact_match(pred, targets):
-    """
-    精确匹配评估
-    
-    检查预测答案是否与任何一个目标答案完全匹配（经过标准化处理后）。
-    
-    Args:
-        pred (str): 模型预测的答案
-        targets (list): 参考答案列表，通常包含多个标注答案
-    
-    Returns:
-        bool: 如果预测答案与任何一个参考答案精确匹配，返回True；否则返回False
-    """
-    # 对预测答案进行标准化处理
+    """精确匹配评估"""
     pred_norm = normalize_answer(pred)
-    # 遍历所有参考答案
     for target in targets:
-        # 对当前参考答案进行标准化处理
-        target_norm = normalize_answer(target)
-        # 检查标准化后的预测答案是否与标准化后的参考答案完全匹配
-        if pred_norm == target_norm:
-            return True  # 找到匹配，返回True
-    # 遍历完所有参考答案都没有找到匹配，返回False
+        if pred_norm == normalize_answer(target):
+            return True
     return False
 
 
 def compute_fuzzy_match(pred, targets):
-    """
-    模糊匹配算法
-    
-    实现多种模糊匹配策略，提高评估的鲁棒性。
-    包括精确匹配、子串匹配、单词重叠度计算等。
-    
-    Args:
-        pred (str): 模型预测的答案
-        targets (list): 参考答案列表
-    
-    Returns:
-        bool: 如果预测答案与任何一个参考答案模糊匹配，返回True；否则返回False
-    """
-    # 对预测答案进行标准化处理
+    """模糊匹配算法"""
     pred_norm = normalize_answer(pred)
-    
-    # 遍历所有参考答案
+
     for target in targets:
-        # 对当前参考答案进行标准化处理
         target_norm = normalize_answer(target)
-        
-        # 1. 精确匹配检查
+
         if pred_norm == target_norm:
-            return True  # 精确匹配，直接返回True
-        
-        # 2. 子串匹配检查：参考答案是否是预测答案的子串
+            return True
         if target_norm in pred_norm:
-            return True  # 参考答案是预测答案的子串，返回True
-        
-        # 3. 包含关系检查：预测答案是否是参考答案的子串，且长度大于3
+            return True
         if pred_norm in target_norm and len(pred_norm) > 3:
-            return True  # 预测答案是参考答案的子串且长度足够，返回True
-        
-        # 4. 单词重叠度检查
-        # 将预测答案拆分为单词集合
-        pred_words = set(pred_norm.split())
-        # 将参考答案拆分为单词集合
-        target_words = set(target_norm.split())
-        # 检查参考答案单词集合是否非空，避免除以零错误
-        if target_words:
-            # 计算单词重叠率：共同单词数 / 参考答案单词数
-            overlap_ratio = len(pred_words & target_words) / len(target_words)
-            # 如果重叠率超过70%，认为匹配成功
-            if overlap_ratio > 0.7:
-                return True
-    
-    # 所有匹配策略都失败，返回False
+            pred_words = set(pred_norm.split())
+            target_words = set(target_norm.split())
+            if target_words:
+                overlap_ratio = len(pred_words & target_words) / len(target_words)
+                if overlap_ratio > 0.7:
+                    return True
     return False
 
 
 def compute_accuracy(pred, targets):
-    """
-    计算预测答案的准确率
-    
-    使用多种匹配策略综合评估预测答案的质量。
-    支持精确匹配、模糊匹配和部分匹配。
-    
-    Args:
-        pred (str): 模型预测的答案
-        targets (list): 参考答案列表（通常有多个标注答案）
-    
-    Returns:
-        bool: 预测是否正确
-    """
-    # 对预测答案进行标准化处理
+    """计算预测答案的准确率"""
     pred_norm = normalize_answer(pred)
-    
-    # 初始化最佳匹配和最佳分数
-    best_match = None
-    best_score = 0
-    
-    # 遍历所有目标答案，找出最佳匹配
+
     for target in targets:
-        # 对当前目标答案进行标准化处理
         target_norm = normalize_answer(target)
-        
-        # 1. 精确匹配检查
         if pred_norm == target_norm:
-            return True  # 精确匹配，直接返回True
-        
-        # 初始化当前匹配分数
+            return True
+
+    best_score = 0
+    for target in targets:
+        target_norm = normalize_answer(target)
         score = 0
-        
-        # 2. 部分匹配评分
         if target_norm in pred_norm:
-            score = 0.9  # 高分：参考答案完全包含在预测答案中
+            score = 0.9
         elif pred_norm in target_norm:
-            score = 0.8  # 中高分：预测答案包含在参考答案中
+            score = 0.8
         else:
-            # 3. 单词重叠度评分
-            # 计算共同单词集合
             common = set(pred_norm.split()) & set(target_norm.split())
-            # 检查参考答案是否有单词，避免除以零错误
             if target_norm.split():
-                # 计算重叠率：共同单词数 / 参考答案单词数
                 score = len(common) / len(set(target_norm.split()))
-        
-        # 更新最佳匹配和最佳分数
         if score > best_score:
-            best_score = score  # 更新最佳分数
-            best_match = target  # 更新最佳匹配的参考答案
-    
-    # 设置评分阈值，高于60%认为匹配成功
+            best_score = score
+
     return best_score >= 0.6
 
 
-# =====================
-# 7. 可视化和报告生成
-# =====================
-
 def create_category_chart(category_stats, output_dir):
-    """
-    创建问题类型统计图表
-    
-    生成柱状图展示各问题类型的样本数量分布和准确率表现。
-    包含两个子图：样本数量统计和各类型准确率。
-    
-    Args:
-        category_stats (dict): 分类统计数据，键为问题类型，值为包含'correct'和'total'的字典
-        output_dir (str): 输出目录路径
-    
-    Returns:
-        str: 图表保存路径
-    """
-    # 提取问题类型列表
+    """创建问题类型统计图表"""
     categories = list(category_stats.keys())
-    # 提取各类型的总样本数
     totals = [stats['total'] for stats in category_stats.values()]
-    # 提取各类型的正确样本数
     correct = [stats['correct'] for stats in category_stats.values()]
-    # 计算各类型的准确率，避免除以零错误
     accuracies = [c / t if t > 0 else 0 for c, t in zip(correct, totals)]
-    
-    # 创建1行2列的子图布局，设置图大小为14x5
+
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-    
-    # 子图1：样本数量统计
-    x = np.arange(len(categories))  # 创建x轴坐标
-    # 绘制总样本数柱状图，位置向左偏移0.175
+
+    x = np.arange(len(categories))
     ax1.bar(x - 0.175, totals, 0.35, label='总计', color='steelblue')
-    # 绘制正确样本数柱状图，位置向右偏移0.175
     ax1.bar(x + 0.175, correct, 0.35, label='正确', color='green')
-    # 设置x轴刻度位置
     ax1.set_xticks(x)
-    # 设置x轴刻度标签为问题类型，旋转45度，右对齐
     ax1.set_xticklabels(categories, rotation=45, ha='right')
-    # 添加图例
     ax1.legend()
-    # 设置子图标题
     ax1.set_title('问题类型统计')
-    
-    # 子图2：各类型准确率
-    # 根据准确率设置柱状图颜色：绿色>50%，橙色>30%，红色<=30%
+
     colors = ['green' if acc > 0.5 else 'orange' if acc > 0.3 else 'red' for acc in accuracies]
-    # 绘制准确率柱状图
     ax2.bar(categories, accuracies, color=colors)
-    # 设置x轴刻度位置
     ax2.set_xticks(x)
-    # 设置x轴刻度标签为问题类型，旋转45度，右对齐
     ax2.set_xticklabels(categories, rotation=45, ha='right')
-    # 添加50%准确率基线
     ax2.axhline(y=0.5, color='gray', linestyle='--', label='50%基线')
-    # 设置子图标题
     ax2.set_title('各问题类型准确率')
-    # 添加图例
     ax2.legend()
-    
-    # 在柱状图上标注百分比
+
     for i, acc in enumerate(accuracies):
-        if acc > 0:  # 只标注准确率大于0的情况
-            # 在柱状图上方添加百分比文本，居中对齐
+        if acc > 0:
             ax2.text(i, acc + 0.02, f'{acc:.1%}', ha='center', fontsize=9)
-    
-    # 调整布局，避免元素重叠
+
     plt.tight_layout()
-    # 构建图表保存路径
     chart_path = os.path.join(output_dir, 'category_statistics.png')
-    # 保存图表，设置DPI为150，确保清晰度
     plt.savefig(chart_path, dpi=150, bbox_inches='tight')
-    # 关闭图表，释放内存
     plt.close()
-    # 打印保存路径
     print(f"分类统计图表已保存到: {chart_path}")
-    # 返回图表保存路径
     return chart_path
 
 
 def create_visualization(results, image_dir, output_dir, num_samples=20, show_clip_info=False):
-    """
-    创建VQA评估结果的可视化展示
-    
-    生成包含成功和失败案例的图像网格，直观展示模型的评估表现。
-    每个子图显示原始图像、问题、模型答案和评估结果。
-    
-    Args:
-        results (list): 评估结果列表，包含每个样本的评估详情
-        image_dir (str): 图像目录路径
-        output_dir (str): 输出目录路径
-        num_samples (int): 要展示的样本数量，默认20个
-        show_clip_info (bool): 是否显示CLIP相关信息，默认不显示
-    
-    Returns:
-        str: 可视化图像的保存路径
-    """
-    # 分离成功和失败的案例
-    success = [r for r in results if r['is_correct']]  # 筛选成功案例
-    failure = [r for r in results if not r['is_correct']]  # 筛选失败案例
-    
-    # 初始化选中的样本列表
+    """创建VQA评估结果的可视化展示"""
+    success = [r for r in results if r['is_correct']]
+    failure = [r for r in results if not r['is_correct']]
+
     selected = []
-    # 平衡选择成功和失败的案例，各占一半
-    num_success = min(num_samples // 2, len(success))  # 成功案例数量
-    num_failure = min(num_samples - num_success, len(failure))  # 失败案例数量
-    
-    # 随机选择成功案例
+    num_success = min(num_samples // 2, len(success))
+    num_failure = min(num_samples - num_success, len(failure))
+
     if num_success > 0:
-        # 随机生成指定数量的索引，不重复
         indices = np.random.choice(len(success), num_success, replace=False)
-        # 根据索引选择成功案例
         for idx in indices:
             selected.append(success[idx])
-    
-    # 随机选择失败案例
+
     if num_failure > 0:
-        # 随机生成指定数量的索引，不重复
         indices = np.random.choice(len(failure), num_failure, replace=False)
-        # 根据索引选择失败案例
         for idx in indices:
             selected.append(failure[idx])
-    
-    # 随机打乱选中样本的顺序
+
     np.random.shuffle(selected)
-    
-    # 计算子图布局：4列，行数根据样本数量调整
+
     cols, rows = 4, (len(selected) + 3) // 4
-    # 创建子图网格
     fig, axes = plt.subplots(rows, cols, figsize=(20, 5 * rows))
-    # 将二维坐标轴数组展平为一维，方便遍历
     axes = axes.flatten()
-    
-    # 为每个选中的案例创建子图
+
     for idx, result in enumerate(selected):
-        # 检查是否超出坐标轴数量
         if idx >= len(axes):
             break
-        # 获取当前坐标轴
         ax = axes[idx]
         try:
-            # 加载并显示图像
             img = Image.open(os.path.join(image_dir, result['image_file']))
-            ax.imshow(img)  # 显示图像
-            ax.axis('off')  # 隐藏坐标轴
-            
-            # 设置结果状态文本和颜色
+            ax.imshow(img)
+            ax.axis('off')
+
             status = "[成功]" if result['is_correct'] else "[失败]"
             color = 'green' if result['is_correct'] else 'red'
-            
-            # 构建标题信息列表
+
             title_parts = [
-                f"ID:{result['id']} [{result['category']}] {status}",  # 样本ID、类型和状态
-                f"问题: {result['question'][:35]}...",  # 问题文本，截断显示
+                f"ID:{result['id']} [{result['category']}] {status}",
+                f"问题: {result['question'][:35]}..."
             ]
-            
-            # 根据是否显示CLIP信息调整答案显示
+
             if show_clip_info and 'clip_score' in result:
-                # 选择要显示的答案字段：优先显示final_answer，否则显示model_answer
                 answer_field = 'final_answer' if 'final_answer' in result else 'model_answer'
-                # 构建CLIP得分信息
                 clip_info = f"\nCLIP得分: {result['clip_score']:.2f}" if result['clip_score'] > 0 else ""
-                # 构建CLIP重排序信息
                 rerank_info = " (CLIP优化)" if result.get('clip_reranked', False) else ""
-                
-                # 添加预测答案信息
+
                 title_parts.append(
                     f"预测: {result[answer_field][:25]}{rerank_info}{clip_info}"
                 )
-                # 如果有真实答案，添加真实答案信息
                 if 'ground_truth' in result:
                     title_parts.append(
                         f"真实: {result['ground_truth'][:25]}"
                     )
             else:
-                # 不显示CLIP信息时的答案字段选择
                 answer_field = 'model_answer' if 'model_answer' in result else 'final_answer'
-                # 添加答案信息
                 title_parts.append(
                     f"答案: {result[answer_field][:30]}"
                 )
-            
-            # 设置子图标题，使用换行符连接各部分信息
+
             ax.set_title(
                 "\n".join(title_parts),
-                fontsize=8, color=color  # 设置字体大小和颜色
+                fontsize=8, color=color
             )
         except Exception as e:
-            # 图像加载失败的处理
-            ax.text(0.5, 0.5, f"图像加载失败", ha='center', va='center')  # 显示错误信息
-            ax.axis('off')  # 隐藏坐标轴
-    
-    # 隐藏多余的子图
+            ax.text(0.5, 0.5, f"图像加载失败", ha='center', va='center')
+            ax.axis('off')
+
     for ax in axes.flat[len(selected):]:
         ax.axis('off')
-    
-    # 调整布局，避免元素重叠
+
     plt.tight_layout()
-    # 构建可视化结果保存路径
     viz_path = os.path.join(output_dir, 'vqa_visualization.png')
-    # 保存可视化结果，设置DPI为150
     plt.savefig(viz_path, dpi=150, bbox_inches='tight')
-    # 关闭图表，释放内存
     plt.close()
-    # 打印保存路径
     print(f"可视化结果已保存到: {viz_path}")
-    # 返回保存路径
     return viz_path
 
 
 def compute_metrics_base(results, category_stats):
-    """
-    计算基础评估指标
-    
-    汇总评估结果，计算总体和各分类的准确率等指标。
-    
-    Args:
-        results (list): 评估结果列表
-        category_stats (dict): 分类统计字典
-    
-    Returns:
-        dict: 包含各种评估指标的字典
-    """
-    # 计算总样本数
+    """计算基础评估指标"""
     total = len(results)
-    # 计算正确样本数
     correct = sum(1 for r in results if r['is_correct'])
-    # 计算总体准确率，避免除以零错误
     overall_accuracy = correct / total if total > 0 else 0
-    
-    # 初始化各问题类型的准确率字典
+
     category_accuracy = {}
-    # 遍历各问题类型的统计数据
     for cat, stats in category_stats.items():
-        # 计算当前类型的准确率，避免除以零错误
         category_accuracy[cat] = stats['correct'] / stats['total'] if stats['total'] > 0 else None
-    
-    # 返回包含所有评估指标的字典
+
     return {
-        'overall_accuracy': overall_accuracy,  # 总体准确率
-        'total_samples': total,  # 总样本数
-        'correct_samples': correct,  # 正确样本数
-        'category_accuracy': category_accuracy,  # 各类型准确率
-        'category_stats': category_stats  # 原始分类统计数据
+        'overall_accuracy': overall_accuracy,
+        'total_samples': total,
+        'correct_samples': correct,
+        'category_accuracy': category_accuracy,
+        'category_stats': category_stats
     }
+
+
+def save_classification_result(image_path, labels, all_probs, output_dir):
+    """保存分类结果到JSON文件"""
+    result = {
+        "image": str(image_path),
+        "top_label": labels[all_probs.argmax()],
+        "top_prob": float(all_probs.max()),
+        "all_predictions": {label: float(prob) for label, prob in zip(labels, all_probs)}
+    }
+    output_path = os.path.join(output_dir, "classification_result.json")
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    print(f"分类结果已保存至: {output_path}")
+    return output_path
+
+
+def save_retrieval_result(query_text, results, output_dir):
+    """保存检索结果到JSON文件"""
+    result = {
+        "query": query_text,
+        "results": results
+    }
+    output_path = os.path.join(output_dir, "retrieval_result.json")
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    print(f"检索结果已保存至: {output_path}")
+    return output_path
+
+
+def save_vqa_result(image_path, question, answer, output_dir):
+    """保存VQA结果到JSON文件"""
+    result = {
+        "image": str(image_path),
+        "question": question,
+        "answer": answer
+    }
+    output_path = os.path.join(output_dir, "vqa_result.json")
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    print(f"VQA结果已保存至: {output_path}")
+    return output_path
+
+
+def get_pil_font(size):
+    """获取适合的PIL字体（支持中文）"""
+    font_candidates = []
+    if selected_font_path:
+        font_candidates.append(selected_font_path)
+    font_candidates.extend([
+        "arial.ttf", "Arial.ttf",
+        "simhei.ttf", "SimHei.ttf", "simsun.ttc",
+        "C:/Windows/Fonts/msyh.ttc",
+        "C:/Windows/Fonts/simhei.ttf",
+    ])
+    for font_path in font_candidates:
+        try:
+            return ImageFont.truetype(font_path, size)
+        except:
+            continue
+    return ImageFont.load_default()
+
+def create_visualization_comparison(image_path, labels, probs, output_path, task_type="classification"):
+    """创建原图与输出结果的对比可视化图像"""
+    original_image = Image.open(image_path).convert("RGB")
+    width, height = original_image.size
+    result_width = width * 2
+    result_height = height
+    result_image = Image.new('RGB', (result_width, result_height), (255, 255, 255))
+    result_image.paste(original_image, (0, 0))
+    draw = ImageDraw.Draw(result_image)
+    font_size = int(min(width, height) * 0.035)
+    title_font = get_pil_font(font_size)
+    label_font = get_pil_font(int(font_size * 0.8))
+    prob_font = get_pil_font(int(font_size * 0.7))
+    info_x = width + 20
+    info_y = 20
+    draw.text((info_x, info_y), "CLIP Zero-Shot 分类结果", fill=(0, 0, 0), font=title_font)
+    info_y += font_size + 30
+    sorted_indices = np.argsort(probs)[::-1]
+    sorted_labels = [labels[i] for i in sorted_indices]
+    sorted_probs = [probs[i] for i in sorted_indices]
+    bar_start_x = info_x
+    bar_start_y = info_y + font_size
+    bar_height = int(height * 0.7 / len(labels))
+    max_bar_width = int(width * 0.35)
+    max_prob = max(sorted_probs) if max(sorted_probs) > 0 else 1.0
+    for i, (label, prob) in enumerate(zip(sorted_labels, sorted_probs)):
+        label_y = bar_start_y + i * bar_height
+        bar_width = int((prob / max_prob) * max_bar_width) if max_prob > 0 else 0
+        bar_color = (int(50 + 200 * (1 - i / len(labels))),
+                     int(100 + 155 * (i / len(labels))),
+                     255)
+        draw.rectangle([bar_start_x, label_y, bar_start_x + bar_width, label_y + bar_height - 2],
+                      fill=bar_color)
+        draw.text((bar_start_x + bar_width + 5, label_y),
+                 f"{prob:.3f}", fill=(0, 0, 0), font=prob_font)
+    info_y = bar_start_y + len(labels) * bar_height + 20
+    result_image.save(output_path, quality=95)
+    print(f"可视化对比图已保存至: {output_path}")
+
+
+def create_retrieval_comparison(query_text, results, image_folder, output_path):
+    """创建图文检索结果对比可视化"""
+    if not results:
+        return
+    sample_image = Image.open(results[0]["image"]).convert("RGB")
+    img_width, img_height = sample_image.size
+    result_count = len(results)
+    total_width = img_width * (result_count + 1)
+    total_height = img_height
+    result_image = Image.new('RGB', (total_width, total_height), (255, 255, 255))
+    draw = ImageDraw.Draw(result_image)
+    font_size = int(min(img_width, img_height) * 0.04)
+    title_font = get_pil_font(font_size)
+    label_font = get_pil_font(int(font_size * 0.7))
+    draw.text((20, 20), f"查询: '{query_text}'", fill=(0, 0, 150), font=title_font)
+    for i, result in enumerate(results):
+        img = Image.open(result["image"]).convert("RGB")
+        x_offset = img_width * (i + 1)
+        result_image.paste(img, (x_offset, 0))
+        label_y = 20
+        label_text = f"排名 {result['rank']}"
+        draw.text((x_offset + 20, label_y), label_text, fill=(0, 0, 0), font=title_font)
+        score_y = label_y + font_size + 10
+        score_text = f"相似度: {result['similarity']:.3f}"
+        draw.text((x_offset + 20, score_y), score_text, fill=(0, 100, 0), font=label_font)
+    result_image.save(output_path, quality=95)
+    print(f"检索结果对比图已保存至: {output_path}")
+
+
+def create_vqa_visualization_comparison(image_path, question, answer, output_path):
+    """创建原图与VQA输出结果的对比可视化图像"""
+    original_image = Image.open(image_path).convert("RGB")
+    width, height = original_image.size
+    dpi = 100
+    fig_width = (width * 2) / dpi
+    fig_height = height / dpi
+    fig, axes = plt.subplots(1, 2, figsize=(fig_width, fig_height), dpi=dpi)
+    axes[0].imshow(original_image)
+    axes[0].set_title("原图", fontsize=14, fontweight='bold')
+    axes[0].axis('off')
+    font_prop = get_chinese_font()
+    info_text = f"问题: {question}\n\n答案: {answer}"
+    axes[1].text(0.05, 0.95, info_text,
+                 transform=axes[1].transAxes, fontsize=11,
+                 verticalalignment='top', fontproperties=font_prop,
+                 bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.9))
+    axes[1].set_title("Qwen3-VL VQA 结果", fontsize=14, fontweight='bold')
+    axes[1].axis('off')
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=dpi, bbox_inches='tight', facecolor='white')
+    plt.close()
+    print(f"可视化对比图已保存至: {output_path}")
