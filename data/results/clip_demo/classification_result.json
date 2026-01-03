@@ -1,13 +1,13 @@
 {
-  "image": "F:\\2_study\\-200_StudyPace\\Code\\python\\计算机视觉\\VL\\data\\images\\0.jpg",
-  "top_label": "a phone",
-  "top_prob": 0.9386764764785767,
+  "image": "F:\\2_study\\-200_StudyPace\\Code\\python\\计算机视觉\\VL\\data\\images\\001.png",
+  "top_label": "a cat",
+  "top_prob": 0.9860571622848511,
   "all_predictions": {
-    "a cat": 0.0017006970010697842,
-    "a dog": 0.002245421288534999,
-    "a car": 0.045077789574861526,
-    "a tree": 0.0008913560304790735,
-    "a person": 0.011408236809074879,
-    "a phone": 0.9386764764785767
+    "a cat": 0.9860571622848511,
+    "a dog": 0.01114026177674532,
+    "a car": 0.00010278394620399922,
+    "a tree": 2.080517697322648e-05,
+    "a person": 0.001841059885919094,
+    "a phone": 0.0008380301878787577
   }
 }

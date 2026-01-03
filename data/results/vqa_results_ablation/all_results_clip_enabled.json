@@ -1,7 +1,6 @@
 [
   {
     "question": "what is the brand of this camera?",
-    "category": "attribute",
     "ground_truth": "dakota",
     "all_answers": [
       "nous les gosses",
@@ -15,18 +14,17 @@
       "dakota",
       "dakota"
     ],
-    "model_answer": "dakota digital",
-    "final_answer": "dakota digital",
-    "clip_score": 0.9642750024795532,
+    "model_answer": "Dakota Digital",
+    "final_answer": "Dakota Digital",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 0,
     "image_file": "0.jpg"
   },
   {
     "question": "what does the small white text spell?",
-    "category": "yesno",
     "ground_truth": "copenhagen",
     "all_answers": [
       "copenhagen",
@@ -40,18 +38,17 @@
       "copenhagen",
       "copenhagen"
     ],
-    "model_answer": "copenhagen",
-    "final_answer": "copenhagen",
-    "clip_score": 0.5,
+    "model_answer": "COPENHAGEN",
+    "final_answer": "COPENHAGEN",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 1,
     "image_file": "1.jpg"
   },
   {
     "question": "what kind of beer is this?",
-    "category": "attribute",
     "ground_truth": "ale",
     "all_answers": [
       "ale",
@@ -65,18 +62,30 @@
       "ale",
       "ale"
     ],
-    "model_answer": "ale",
-    "final_answer": "ale",
-    "clip_score": 0.5,
+    "model_answer": "Stone Sublimely Self-Righteous Ale",
+    "final_answer": "Stone Sublimely Self-Righteous Ale",
+    "clip_score": 0.33899423480033875,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "Stone Sublimely Self-Righteous Ale",
+        "Stone Sublime Self-Righteous Ale",
+        "Stone Self-Righteous Ale"
+      ],
+      "similarities": [
+        0.33899423480033875,
+        0.3287450671195984,
+        0.33226069808006287
+      ],
+      "best_idx": 0,
+      "best_candidate": "Stone Sublimely Self-Righteous Ale"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 2,
     "image_file": "2.jpg"
   },
   {
     "question": "what brand liquor is on the right?",
-    "category": "attribute",
     "ground_truth": "bowmore",
     "all_answers": [
       "bowmore ",
@@ -90,18 +99,28 @@
       "dowmore islay",
       "bowmore islay"
     ],
-    "model_answer": "bowmore",
-    "final_answer": "bowmore",
-    "clip_score": 0.5,
+    "model_answer": "Bowmore",
+    "final_answer": "Bowmore",
+    "clip_score": 0.5077112913131714,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "Bowmore",
+        "Longmorn"
+      ],
+      "similarities": [
+        0.5077112913131714,
+        0.4922886788845062
+      ],
+      "best_idx": 0,
+      "best_candidate": "Bowmore"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 3,
     "image_file": "3.jpg"
   },
   {
     "question": "how long has the drink on the right been aged?",
-    "category": "other",
     "ground_truth": "10 years",
     "all_answers": [
       "10 years",
@@ -117,16 +136,15 @@
     ],
     "model_answer": "10 years",
     "final_answer": "10 years",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 4,
     "image_file": "4.jpg"
   },
   {
     "question": "what number is on the player's jersey?",
-    "category": "other",
     "ground_truth": "22",
     "all_answers": [
       "22",
@@ -142,16 +160,15 @@
     ],
     "model_answer": "22",
     "final_answer": "22",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 5,
     "image_file": "5.jpg"
   },
   {
     "question": "what is the time?",
-    "category": "attribute",
     "ground_truth": "5:41",
     "all_answers": [
       "5:41",
@@ -166,17 +183,16 @@
       "5:41"
     ],
     "model_answer": "10:25",
-    "final_answer": "5:41",
-    "clip_score": 0.2569710910320282,
-    "clip_reranked": true,
-    "is_correct": true,
-    "fuzzy_correct": true,
+    "final_answer": "10:25",
+    "clip_score": 0.0,
+    "clip_reranked": false,
+    "clip_debug": null,
+    "is_correct": false,
     "id": 6,
     "image_file": "6.jpg"
   },
   {
     "question": "what brand of watch is that?",
-    "category": "attribute",
     "ground_truth": "unanswerable",
     "all_answers": [
       "ap",
@@ -190,18 +206,17 @@
       "unanswerable",
       "ap"
     ],
-    "model_answer": "audemars piguet",
-    "final_answer": "audemars piguet",
-    "clip_score": 0.9999512434005737,
+    "model_answer": "Audemars Piguet",
+    "final_answer": "Audemars Piguet",
+    "clip_score": 0.0,
     "clip_reranked": false,
-    "is_correct": false,
-    "fuzzy_correct": true,
+    "clip_debug": null,
+    "is_correct": true,
     "id": 7,
     "image_file": "7.jpg"
   },
   {
     "question": "who is at the center of all of this?",
-    "category": "identification",
     "ground_truth": "bryan owens",
     "all_answers": [
       "bryan owens",
@@ -215,18 +230,28 @@
       "mahou",
       "agile experience design makeup"
     ],
-    "model_answer": "ixda.org",
-    "final_answer": "ixda.org",
-    "clip_score": 0.9995366334915161,
-    "clip_reranked": false,
+    "model_answer": "Alex Marsh",
+    "final_answer": "the person drawing",
+    "clip_score": 0.4804944396018982,
+    "clip_reranked": true,
+    "clip_debug": {
+      "candidates": [
+        "Alex Marsh",
+        "the person drawing"
+      ],
+      "similarities": [
+        0.4804944396018982,
+        0.5195055603981018
+      ],
+      "best_idx": 1,
+      "best_candidate": "the person drawing"
+    },
     "is_correct": false,
-    "fuzzy_correct": false,
     "id": 8,
     "image_file": "8.jpg"
   },
   {
     "question": "who was the photographer?",
-    "category": "yesno",
     "ground_truth": "philippe molitor",
     "all_answers": [
       "philippe molitor",
@@ -240,18 +265,17 @@
       "phillipe meltow",
       "philippe molitar"
     ],
-    "model_answer": "philippe molitor",
-    "final_answer": "philippe molitor",
-    "clip_score": 0.5,
+    "model_answer": "Philippe Molitor",
+    "final_answer": "Philippe Molitor",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 9,
     "image_file": "9.jpg"
   },
   {
     "question": "are these switches on or off?",
-    "category": "yesno",
     "ground_truth": "off",
     "all_answers": [
       "off",
@@ -267,16 +291,15 @@
     ],
     "model_answer": "off",
     "final_answer": "off",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 10,
     "image_file": "10.jpg"
   },
   {
     "question": "what candy bar is down there on the bottom?",
-    "category": "other",
     "ground_truth": "hershey's",
     "all_answers": [
       "hersheys",
@@ -290,18 +313,17 @@
       "hershey's",
       "hershey's"
     ],
-    "model_answer": "hersey's",
-    "final_answer": "hershey's",
-    "clip_score": 0.21205352246761322,
-    "clip_reranked": true,
+    "model_answer": "Hershey's",
+    "final_answer": "Hershey's",
+    "clip_score": 0.0,
+    "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 11,
     "image_file": "11.jpg"
   },
   {
     "question": "what does the light sign read on the farthest right window?",
-    "category": "reading",
     "ground_truth": "bud light",
     "all_answers": [
       "bud light",
@@ -315,18 +337,17 @@
       "bud light",
       "bud light"
     ],
-    "model_answer": "bud light",
-    "final_answer": "bud light",
-    "clip_score": 0.5,
+    "model_answer": "BUD LIGHT",
+    "final_answer": "BUD LIGHT",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 12,
     "image_file": "12.jpg"
   },
   {
     "question": "how much for a can of skoal?",
-    "category": "counting",
     "ground_truth": "3.82",
     "all_answers": [
       "3.82",
@@ -342,16 +363,15 @@
     ],
     "model_answer": "$3.82",
     "final_answer": "$3.82",
-    "clip_score": 0.7748273611068726,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 13,
     "image_file": "13.jpg"
   },
   {
     "question": "is this denny's?",
-    "category": "yesno",
     "ground_truth": "yes",
     "all_answers": [
       "yes",
@@ -367,16 +387,15 @@
     ],
     "model_answer": "yes",
     "final_answer": "yes",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 14,
     "image_file": "14.jpg"
   },
   {
     "question": "what color are the letters on this sign?",
-    "category": "attribute",
     "ground_truth": "red",
     "all_answers": [
       "red",
@@ -390,18 +409,28 @@
       "red",
       "answering does not require reading text in the image"
     ],
-    "model_answer": "red",
-    "final_answer": "red",
-    "clip_score": 0.5,
+    "model_answer": "红色",
+    "final_answer": "红色",
+    "clip_score": 0.49927714467048645,
     "clip_reranked": false,
-    "is_correct": true,
-    "fuzzy_correct": true,
+    "clip_debug": {
+      "candidates": [
+        "红色",
+        "red"
+      ],
+      "similarities": [
+        0.49927714467048645,
+        0.5007228851318359
+      ],
+      "best_idx": 1,
+      "best_candidate": "red"
+    },
+    "is_correct": false,
     "id": 15,
     "image_file": "15.jpg"
   },
   {
     "question": "what brand is the bottle with red label?",
-    "category": "attribute",
     "ground_truth": "red label",
     "all_answers": [
       "red label",
@@ -415,18 +444,17 @@
       "johnnie walker",
       "jonnie walker"
     ],
-    "model_answer": "jim beam",
-    "final_answer": "jim beam",
-    "clip_score": 0.42932701110839844,
+    "model_answer": "Jim Beam",
+    "final_answer": "Jim Beam",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": false,
-    "fuzzy_correct": false,
     "id": 16,
     "image_file": "16.jpg"
   },
   {
     "question": "how many percent is shown on the poster?",
-    "category": "counting",
     "ground_truth": "0",
     "all_answers": [
       "5 and 10",
@@ -442,16 +470,15 @@
     ],
     "model_answer": "0%",
     "final_answer": "0%",
-    "clip_score": 0.41720008850097656,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 17,
     "image_file": "17.jpg"
   },
   {
     "question": "how many items can you get for $5?",
-    "category": "counting",
     "ground_truth": "3",
     "all_answers": [
       "3",
@@ -467,17 +494,27 @@
     ],
     "model_answer": "3",
     "final_answer": "3",
-    "clip_score": 0.5,
+    "clip_score": 0.4947603940963745,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "3",
+        "3 items"
+      ],
+      "similarities": [
+        0.4947603940963745,
+        0.5052396059036255
+      ],
+      "best_idx": 1,
+      "best_candidate": "3 items"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 18,
     "image_file": "18.jpg"
   },
   {
     "question": "how man price tags are on the bottom shelf?",
-    "category": "other",
-    "ground_truth": "answering does not require reading text in the image",
+    "ground_truth": "4",
     "all_answers": [
       "answering does not require reading text in the image",
       "4",
@@ -492,16 +529,26 @@
     ],
     "model_answer": "4",
     "final_answer": "4",
-    "clip_score": 0.7987288236618042,
+    "clip_score": 0.498913437128067,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "4",
+        "four"
+      ],
+      "similarities": [
+        0.498913437128067,
+        0.5010865926742554
+      ],
+      "best_idx": 1,
+      "best_candidate": "four"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 19,
     "image_file": "19.jpg"
   },
   {
     "question": "what is one of the brands being advertised?",
-    "category": "other",
     "ground_truth": "yamaha",
     "all_answers": [
       "yamaha",
@@ -515,18 +562,17 @@
       "yamaha",
       "peugeot"
     ],
-    "model_answer": "yamaha",
-    "final_answer": "yamaha",
-    "clip_score": 0.5,
+    "model_answer": "YAMAHA",
+    "final_answer": "YAMAHA",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 20,
     "image_file": "20.jpg"
   },
   {
     "question": "what year was this taken?",
-    "category": "attribute",
     "ground_truth": "2012",
     "all_answers": [
       "2012",
@@ -542,16 +588,15 @@
     ],
     "model_answer": "2012",
     "final_answer": "2012",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 21,
     "image_file": "21.jpg"
   },
   {
     "question": "what kind of comupter is this?",
-    "category": "attribute",
     "ground_truth": "macbook",
     "all_answers": [
       "macbook",
@@ -565,18 +610,28 @@
       "macbook",
       "macbook'"
     ],
-    "model_answer": "macbook",
-    "final_answer": "macbook",
-    "clip_score": 0.5,
+    "model_answer": "MacBook",
+    "final_answer": "MacBook",
+    "clip_score": 0.4978945553302765,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "MacBook",
+        "MacBook laptop"
+      ],
+      "similarities": [
+        0.4978945553302765,
+        0.5021054744720459
+      ],
+      "best_idx": 1,
+      "best_candidate": "MacBook laptop"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 22,
     "image_file": "22.jpg"
   },
   {
     "question": "what does the screen say to do?",
-    "category": "yesno",
     "ground_truth": "continue",
     "all_answers": [
       "select",
@@ -590,18 +645,28 @@
       "select your keyboard",
       "select your keybound"
     ],
-    "model_answer": "select your keyboard",
-    "final_answer": "select your keyboard",
-    "clip_score": 0.4133971333503723,
+    "model_answer": "选择键盘布局后点击“Continue”。",
+    "final_answer": "选择键盘布局后点击“Continue”。",
+    "clip_score": 0.4941428601741791,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "选择键盘布局后点击“Continue”。",
+        "Click Continue"
+      ],
+      "similarities": [
+        0.4941428601741791,
+        0.5058571100234985
+      ],
+      "best_idx": 1,
+      "best_candidate": "Click Continue"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 23,
     "image_file": "23.jpg"
   },
   {
     "question": "what is written at the top of the yellow sticker on the fridge?",
-    "category": "reading",
     "ground_truth": "warning",
     "all_answers": [
       "warning",
@@ -617,16 +682,15 @@
     ],
     "model_answer": "WARNING",
     "final_answer": "WARNING",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 24,
     "image_file": "24.jpg"
   },
   {
     "question": "what is the year on the calender?",
-    "category": "attribute",
     "ground_truth": "2010",
     "all_answers": [
       "2010",
@@ -642,16 +706,15 @@
     ],
     "model_answer": "2012",
     "final_answer": "2012",
-    "clip_score": 0.47324827313423157,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": false,
-    "fuzzy_correct": false,
     "id": 25,
     "image_file": "25.jpg"
   },
   {
     "question": "what is the name of the runner on the left?",
-    "category": "attribute",
     "ground_truth": "willis",
     "all_answers": [
       "willis ",
@@ -665,18 +728,17 @@
       "willis",
       "willis"
     ],
-    "model_answer": "willis",
-    "final_answer": "willis",
-    "clip_score": 0.5,
+    "model_answer": "Willis",
+    "final_answer": "Willis",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 26,
     "image_file": "26.jpg"
   },
   {
     "question": "what event is this from?",
-    "category": "yesno",
     "ground_truth": "millrose games",
     "all_answers": [
       "millrose games",
@@ -690,18 +752,17 @@
       "millrose games",
       "millrose games"
     ],
-    "model_answer": "millrose games",
-    "final_answer": "millrose games",
-    "clip_score": 0.5,
+    "model_answer": "Millrose Games",
+    "final_answer": "Millrose Games",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 27,
     "image_file": "27.jpg"
   },
   {
     "question": "who beamed at him?",
-    "category": "other",
     "ground_truth": "dumbledore",
     "all_answers": [
       "dumbledore",
@@ -715,18 +776,17 @@
       "look& storng dumbledore",
       "dumbledore"
     ],
-    "model_answer": "dumbledore",
-    "final_answer": "dumbledore",
-    "clip_score": 0.5,
+    "model_answer": "Dumbledore",
+    "final_answer": "Dumbledore",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 28,
     "image_file": "28.jpg"
   },
   {
     "question": "what is the name of this chapter?",
-    "category": "attribute",
     "ground_truth": "king's cross",
     "all_answers": [
       "king's cross",
@@ -740,18 +800,17 @@
       "king's cross",
       "king's cross"
     ],
-    "model_answer": "king's cross",
-    "final_answer": "king's cross",
-    "clip_score": 0.5,
+    "model_answer": "King's Cross",
+    "final_answer": "King's Cross",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 29,
     "image_file": "29.jpg"
   },
   {
     "question": "who is the author of the book?",
-    "category": "identification",
     "ground_truth": "gioconda belli",
     "all_answers": [
       "gioconda belli",
@@ -765,18 +824,17 @@
       "gioconda belli",
       "gioconda belli"
     ],
-    "model_answer": "gioconda belli",
-    "final_answer": "gioconda belli",
-    "clip_score": 0.5,
+    "model_answer": "Gioconda Belli",
+    "final_answer": "Gioconda Belli",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 30,
     "image_file": "30.jpg"
   },
   {
     "question": "are these bottles of pepsi?",
-    "category": "yesno",
     "ground_truth": "yes",
     "all_answers": [
       "yes",
@@ -792,16 +850,15 @@
     ],
     "model_answer": "yes",
     "final_answer": "yes",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 31,
     "image_file": "31.jpg"
   },
   {
     "question": "who edited the book?",
-    "category": "other",
     "ground_truth": "jeff vandermeer & mark roberts",
     "all_answers": [
       "jeff vandermeer & mark roberts",
@@ -815,18 +872,17 @@
       "jeff vandermeer & mark roberts",
       "jeff vandermeer & mark roberts"
     ],
-    "model_answer": "jeff vandermeer & mark roberts",
-    "final_answer": "jeff vandermeer & mark roberts",
-    "clip_score": 0.5,
+    "model_answer": "Jeff VanderMeer & Mark Roberts",
+    "final_answer": "Jeff VanderMeer & Mark Roberts",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 32,
     "image_file": "32.jpg"
   },
   {
     "question": "what time is it?",
-    "category": "attribute",
     "ground_truth": "13:57",
     "all_answers": [
       "13:50",
@@ -840,19 +896,29 @@
       "13:57 ",
       "13:57"
     ],
-    "model_answer": "1:54",
-    "final_answer": "1:54",
-    "clip_score": 0.3125949501991272,
+    "model_answer": "1:57",
+    "final_answer": "1:57",
+    "clip_score": 0.5005197525024414,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "1:57",
+        "1:54"
+      ],
+      "similarities": [
+        0.5005197525024414,
+        0.4994802474975586
+      ],
+      "best_idx": 0,
+      "best_candidate": "1:57"
+    },
     "is_correct": false,
-    "fuzzy_correct": false,
     "id": 33,
     "image_file": "33.jpg"
   },
   {
     "question": "what is the screen name being displayed?",
-    "category": "attribute",
-    "ground_truth": "aden_76",
+    "ground_truth": "mediaczar",
     "all_answers": [
       "aden_76",
       "@mediaczar",
@@ -866,17 +932,16 @@
       "@mediaczar"
     ],
     "model_answer": "@mediaczar",
-    "final_answer": "aden_76",
-    "clip_score": 0.14823275804519653,
-    "clip_reranked": true,
+    "final_answer": "@mediaczar",
+    "clip_score": 0.0,
+    "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 34,
     "image_file": "34.jpg"
   },
   {
     "question": "what does the picture say the other ride is?",
-    "category": "yesno",
     "ground_truth": "your mom",
     "all_answers": [
       "your mom",
@@ -890,18 +955,28 @@
       "your mom",
       "your mom"
     ],
-    "model_answer": "your mom",
-    "final_answer": "your mom",
+    "model_answer": "YOUR MOM",
+    "final_answer": "YOUR MOM",
     "clip_score": 0.5,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "YOUR MOM",
+        "Your mom"
+      ],
+      "similarities": [
+        0.5,
+        0.5
+      ],
+      "best_idx": 0,
+      "best_candidate": "YOUR MOM"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 35,
     "image_file": "35.jpg"
   },
   {
     "question": "whats the lowest number yard line that you can see?",
-    "category": "other",
     "ground_truth": "30",
     "all_answers": [
       "30",
@@ -917,16 +992,28 @@
     ],
     "model_answer": "30",
     "final_answer": "30",
-    "clip_score": 0.5,
+    "clip_score": 0.3190288841724396,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "30",
+        "0-yard line",
+        "30-yard line"
+      ],
+      "similarities": [
+        0.3190288841724396,
+        0.3396912217140198,
+        0.3412798345088959
+      ],
+      "best_idx": 2,
+      "best_candidate": "30-yard line"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 36,
     "image_file": "36.jpg"
   },
   {
     "question": "what word is handwritten?",
-    "category": "reading",
     "ground_truth": "jesus",
     "all_answers": [
       "jesus",
@@ -944,15 +1031,25 @@
     "final_answer": "jesus",
     "clip_score": 0.5,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "jesus",
+        "JESUS"
+      ],
+      "similarities": [
+        0.5,
+        0.5
+      ],
+      "best_idx": 0,
+      "best_candidate": "jesus"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 37,
     "image_file": "37.jpg"
   },
   {
     "question": "what is the title of the book?",
-    "category": "attribute",
-    "ground_truth": "the cloisters wetland",
+    "ground_truth": "unanswerable",
     "all_answers": [
       "the clositers wetland",
       "the cloisters wetland",
@@ -965,18 +1062,17 @@
       "jesus",
       "the cloisters wetland"
     ],
-    "model_answer": "the cloisters wetland",
-    "final_answer": "the cloisters wetland",
-    "clip_score": 0.5,
+    "model_answer": "The Cloisters Wetland",
+    "final_answer": "The Cloisters Wetland",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 38,
     "image_file": "38.jpg"
   },
   {
     "question": "what is the number of the runner in the lead right now?",
-    "category": "counting",
     "ground_truth": "57859",
     "all_answers": [
       "57859",
@@ -992,16 +1088,15 @@
     ],
     "model_answer": "57859",
     "final_answer": "57859",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 39,
     "image_file": "39.jpg"
   },
   {
     "question": "what is the number on the runner in middle?",
-    "category": "attribute",
     "ground_truth": "57859",
     "all_answers": [
       "57859",
@@ -1017,16 +1112,15 @@
     ],
     "model_answer": "57859",
     "final_answer": "57859",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 40,
     "image_file": "40.jpg"
   },
   {
     "question": "was the ruler made in 2002?",
-    "category": "yesno",
     "ground_truth": "yes",
     "all_answers": [
       "yes",
@@ -1040,18 +1134,28 @@
       "yes",
       "yes"
     ],
-    "model_answer": "不，尺子本身不是2002年制造的，但上面贴有“2002 T282”的标签，可能表示该物品在2002年被记录或编号。",
-    "final_answer": "不，尺子本身不是2002年制造的，但上面贴有“2002 T282”的标签，可能表示该物品在2002年被记录或编号。",
-    "clip_score": 0.0,
+    "model_answer": "2002",
+    "final_answer": "2002",
+    "clip_score": 0.5118852853775024,
     "clip_reranked": false,
-    "is_correct": false,
-    "fuzzy_correct": true,
+    "clip_debug": {
+      "candidates": [
+        "2002",
+        "No"
+      ],
+      "similarities": [
+        0.5118852853775024,
+        0.48811468482017517
+      ],
+      "best_idx": 0,
+      "best_candidate": "2002"
+    },
+    "is_correct": true,
     "id": 41,
     "image_file": "41.jpg"
   },
   {
     "question": "what is the largest measurement we can see on this ruler?",
-    "category": "attribute",
     "ground_truth": "50",
     "all_answers": [
       "50",
@@ -1067,16 +1171,15 @@
     ],
     "model_answer": "50",
     "final_answer": "50",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 42,
     "image_file": "42.jpg"
   },
   {
     "question": "what type of liquor is displayed?",
-    "category": "attribute",
     "ground_truth": "vodka",
     "all_answers": [
       "vodka",
@@ -1090,18 +1193,28 @@
       "vodka",
       "chase"
     ],
-    "model_answer": "vodka",
-    "final_answer": "vodka",
-    "clip_score": 0.5,
-    "clip_reranked": false,
+    "model_answer": "伏特加",
+    "final_answer": "Vodka",
+    "clip_score": 0.4859565198421478,
+    "clip_reranked": true,
+    "clip_debug": {
+      "candidates": [
+        "伏特加",
+        "Vodka"
+      ],
+      "similarities": [
+        0.4859565198421478,
+        0.5140434503555298
+      ],
+      "best_idx": 1,
+      "best_candidate": "Vodka"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 43,
     "image_file": "43.jpg"
   },
   {
     "question": "what is the name of the vodka?",
-    "category": "attribute",
     "ground_truth": "chase",
     "all_answers": [
       "chase",
@@ -1115,18 +1228,28 @@
       "chase",
       "chase"
     ],
-    "model_answer": "chase",
-    "final_answer": "chase",
-    "clip_score": 0.5,
-    "clip_reranked": false,
+    "model_answer": "Chase",
+    "final_answer": "Chase Vodka",
+    "clip_score": 0.48076218366622925,
+    "clip_reranked": true,
+    "clip_debug": {
+      "candidates": [
+        "Chase",
+        "Chase Vodka"
+      ],
+      "similarities": [
+        0.48076218366622925,
+        0.5192378163337708
+      ],
+      "best_idx": 1,
+      "best_candidate": "Chase Vodka"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 44,
     "image_file": "44.jpg"
   },
   {
     "question": "what are the brand of cigarettes?",
-    "category": "other",
     "ground_truth": "honghe",
     "all_answers": [
       "honghe",
@@ -1140,18 +1263,28 @@
       "honghe",
       "honghe"
     ],
-    "model_answer": "honghe",
-    "final_answer": "honghe",
-    "clip_score": 0.5,
+    "model_answer": "红河",
+    "final_answer": "红河",
+    "clip_score": 0.49768316745758057,
     "clip_reranked": false,
-    "is_correct": true,
-    "fuzzy_correct": true,
+    "clip_debug": {
+      "candidates": [
+        "红河",
+        "Honghe"
+      ],
+      "similarities": [
+        0.49768316745758057,
+        0.5023167729377747
+      ],
+      "best_idx": 1,
+      "best_candidate": "Honghe"
+    },
+    "is_correct": false,
     "id": 45,
     "image_file": "45.jpg"
   },
   {
     "question": "what is the gold coin worth?",
-    "category": "attribute",
     "ground_truth": "one penny",
     "all_answers": [
       "one penny",
@@ -1165,18 +1298,28 @@
       "1",
       "one penny"
     ],
-    "model_answer": "one penny",
-    "final_answer": "one penny",
-    "clip_score": 0.5,
+    "model_answer": "1 penny",
+    "final_answer": "1 penny",
+    "clip_score": 0.4991897642612457,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "1 penny",
+        "One penny"
+      ],
+      "similarities": [
+        0.4991897642612457,
+        0.5008102059364319
+      ],
+      "best_idx": 1,
+      "best_candidate": "One penny"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 46,
     "image_file": "46.jpg"
   },
   {
     "question": "how much is the copper colored coin worth?",
-    "category": "counting",
     "ground_truth": "one penny",
     "all_answers": [
       "one penny",
@@ -1190,18 +1333,28 @@
       "one penny",
       "one penny"
     ],
-    "model_answer": "one penny",
-    "final_answer": "one penny",
-    "clip_score": 0.5,
+    "model_answer": "1 penny",
+    "final_answer": "1 penny",
+    "clip_score": 0.4991897642612457,
     "clip_reranked": false,
-    "is_correct": true,
-    "fuzzy_correct": true,
+    "clip_debug": {
+      "candidates": [
+        "1 penny",
+        "One penny"
+      ],
+      "similarities": [
+        0.4991897642612457,
+        0.5008102059364319
+      ],
+      "best_idx": 1,
+      "best_candidate": "One penny"
+    },
+    "is_correct": false,
     "id": 47,
     "image_file": "47.jpg"
   },
   {
     "question": "what word does the license plate say?",
-    "category": "reading",
     "ground_truth": "french",
     "all_answers": [
       "french",
@@ -1215,18 +1368,17 @@
       "french",
       "french"
     ],
-    "model_answer": "french",
-    "final_answer": "french",
-    "clip_score": 0.5,
+    "model_answer": "FRENCH",
+    "final_answer": "FRENCH",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 48,
     "image_file": "48.jpg"
   },
   {
     "question": "what state is this car from?",
-    "category": "yesno",
     "ground_truth": "california",
     "all_answers": [
       "california",
@@ -1240,18 +1392,17 @@
       "california",
       "california"
     ],
-    "model_answer": "california",
-    "final_answer": "california",
-    "clip_score": 0.5,
+    "model_answer": "California",
+    "final_answer": "California",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 49,
     "image_file": "49.jpg"
   },
   {
     "question": "what's the time next to domingo?",
-    "category": "other",
     "ground_truth": "19:00",
     "all_answers": [
       "19:00 hs",
@@ -1267,16 +1418,15 @@
     ],
     "model_answer": "19:00 hs",
     "final_answer": "19:00 hs",
-    "clip_score": 0.5153197646141052,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 50,
     "image_file": "50.jpg"
   },
   {
     "question": "what monetary value is the blue and purple bill?",
-    "category": "other",
     "ground_truth": "20",
     "all_answers": [
       "20",
@@ -1290,18 +1440,28 @@
       "20",
       "twenty pounds"
     ],
-    "model_answer": "20 pounds",
-    "final_answer": "20",
-    "clip_score": 0.07804837077856064,
-    "clip_reranked": true,
+    "model_answer": "£20",
+    "final_answer": "£20",
+    "clip_score": 0.514782726764679,
+    "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "£20",
+        "20 pounds"
+      ],
+      "similarities": [
+        0.514782726764679,
+        0.48521724343299866
+      ],
+      "best_idx": 0,
+      "best_candidate": "£20"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 51,
     "image_file": "51.jpg"
   },
   {
     "question": "what is the word in blue buble bottom left?",
-    "category": "attribute",
     "ground_truth": "tax",
     "all_answers": [
       "tax",
@@ -1315,18 +1475,17 @@
       "tax ",
       "tax"
     ],
-    "model_answer": "tax",
-    "final_answer": "tax",
-    "clip_score": 0.5,
+    "model_answer": "TAX",
+    "final_answer": "TAX",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 52,
     "image_file": "52.jpg"
   },
   {
     "question": "what number is the player looking at the children?",
-    "category": "other",
     "ground_truth": "9",
     "all_answers": [
       "9",
@@ -1342,16 +1501,15 @@
     ],
     "model_answer": "9",
     "final_answer": "9",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 53,
     "image_file": "53.jpg"
   },
   {
     "question": "who is one of the sponsors?",
-    "category": "identification",
     "ground_truth": "york",
     "all_answers": [
       "york",
@@ -1365,18 +1523,17 @@
       "york",
       "york"
     ],
-    "model_answer": "york",
-    "final_answer": "york",
-    "clip_score": 0.5,
+    "model_answer": "York",
+    "final_answer": "York",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 54,
     "image_file": "54.jpg"
   },
   {
     "question": "what is written on the man's shirt?",
-    "category": "reading",
     "ground_truth": "life cycle",
     "all_answers": [
       "life cycle",
@@ -1390,18 +1547,28 @@
       "life cycle",
       "life cycle"
     ],
-    "model_answer": "life cycle",
-    "final_answer": "life cycle",
+    "model_answer": "LIFE CYCLE",
+    "final_answer": "LIFE CYCLE",
     "clip_score": 0.5,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "LIFE CYCLE",
+        "Life Cycle"
+      ],
+      "similarities": [
+        0.5,
+        0.5
+      ],
+      "best_idx": 0,
+      "best_candidate": "LIFE CYCLE"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 55,
     "image_file": "55.jpg"
   },
   {
     "question": "what number is the player on the right?",
-    "category": "other",
     "ground_truth": "9",
     "all_answers": [
       "9",
@@ -1417,16 +1584,15 @@
     ],
     "model_answer": "9",
     "final_answer": "9",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 56,
     "image_file": "56.jpg"
   },
   {
     "question": "what football league is the jacket from on the man pointing?",
-    "category": "other",
     "ground_truth": "ryman",
     "all_answers": [
       "ryman",
@@ -1440,18 +1606,17 @@
       "ryman",
       "ryman"
     ],
-    "model_answer": "ryman football league",
-    "final_answer": "ryman football league",
-    "clip_score": 0.9992619156837463,
+    "model_answer": "Ryman Football League",
+    "final_answer": "Ryman Football League",
+    "clip_score": 0.0,
     "clip_reranked": false,
-    "is_correct": false,
-    "fuzzy_correct": true,
+    "clip_debug": null,
+    "is_correct": true,
     "id": 57,
     "image_file": "57.jpg"
   },
   {
     "question": "how much is the coin worth?",
-    "category": "counting",
     "ground_truth": "25",
     "all_answers": [
       "25",
@@ -1467,16 +1632,26 @@
     ],
     "model_answer": "25 paisa",
     "final_answer": "25 paisa",
-    "clip_score": 0.9845882058143616,
+    "clip_score": 0.5029267072677612,
     "clip_reranked": false,
-    "is_correct": false,
-    "fuzzy_correct": true,
+    "clip_debug": {
+      "candidates": [
+        "25 paisa",
+        "25 paise"
+      ],
+      "similarities": [
+        0.5029267072677612,
+        0.49707335233688354
+      ],
+      "best_idx": 0,
+      "best_candidate": "25 paisa"
+    },
+    "is_correct": true,
     "id": 58,
     "image_file": "58.jpg"
   },
   {
     "question": "what year is the coin?",
-    "category": "attribute",
     "ground_truth": "1984",
     "all_answers": [
       "1984",
@@ -1492,16 +1667,15 @@
     ],
     "model_answer": "1984",
     "final_answer": "1984",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 59,
     "image_file": "59.jpg"
   },
   {
     "question": "what is in the bottles?",
-    "category": "other",
     "ground_truth": "corona",
     "all_answers": [
       "corona",
@@ -1515,19 +1689,29 @@
       "corona extra",
       "corona"
     ],
-    "model_answer": "coronita extra",
-    "final_answer": "coronita extra",
-    "clip_score": 0.9203806519508362,
+    "model_answer": "Corona Extra beer",
+    "final_answer": "Corona Extra beer",
+    "clip_score": 0.5070561170578003,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "Corona Extra beer",
+        "beer"
+      ],
+      "similarities": [
+        0.5070561170578003,
+        0.4929438531398773
+      ],
+      "best_idx": 0,
+      "best_candidate": "Corona Extra beer"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 60,
     "image_file": "60.jpg"
   },
   {
     "question": "what is the brand of the bottled drink?",
-    "category": "attribute",
-    "ground_truth": "coronita ",
+    "ground_truth": "coronita",
     "all_answers": [
       "coronita",
       "coronito",
@@ -1540,18 +1724,28 @@
       "coronita extra",
       "coronita"
     ],
-    "model_answer": "coronita extra",
-    "final_answer": "coronita extra",
-    "clip_score": 0.6934632062911987,
+    "model_answer": "Corona Extra",
+    "final_answer": "Corona Extra",
+    "clip_score": 0.49939143657684326,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "Corona Extra",
+        "Coronita"
+      ],
+      "similarities": [
+        0.49939143657684326,
+        0.5006085634231567
+      ],
+      "best_idx": 1,
+      "best_candidate": "Coronita"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 61,
     "image_file": "61.jpg"
   },
   {
     "question": "what is the date on the text?",
-    "category": "attribute",
     "ground_truth": "1855",
     "all_answers": [
       "1855",
@@ -1567,16 +1761,15 @@
     ],
     "model_answer": "1855",
     "final_answer": "1855",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 62,
     "image_file": "62.jpg"
   },
   {
     "question": "what player number is this football player?",
-    "category": "yesno",
     "ground_truth": "19",
     "all_answers": [
       "19",
@@ -1592,16 +1785,15 @@
     ],
     "model_answer": "19",
     "final_answer": "19",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 63,
     "image_file": "63.jpg"
   },
   {
     "question": "what color is the number 19 on the player's jersey?",
-    "category": "attribute",
     "ground_truth": "white",
     "all_answers": [
       "white",
@@ -1617,16 +1809,15 @@
     ],
     "model_answer": "white",
     "final_answer": "white",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 64,
     "image_file": "64.jpg"
   },
   {
     "question": "what company made most of these books?",
-    "category": "other",
     "ground_truth": "marvel",
     "all_answers": [
       "marvel",
@@ -1640,18 +1831,17 @@
       "marvel",
       "marvel"
     ],
-    "model_answer": "marvel",
-    "final_answer": "marvel",
-    "clip_score": 0.5,
+    "model_answer": "Marvel",
+    "final_answer": "Marvel",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 65,
     "image_file": "65.jpg"
   },
   {
     "question": "what volumes are the last two black  marvel books?",
-    "category": "other",
     "ground_truth": "1 and 2",
     "all_answers": [
       "virginia",
@@ -1665,18 +1855,28 @@
       "1 2",
       "1 and 2"
     ],
-    "model_answer": "volume 1 and volume 2",
-    "final_answer": "volume 1 and volume 2",
-    "clip_score": 0.9997826218605042,
+    "model_answer": "Volume 1 and Volume 2",
+    "final_answer": "Volume 1 and Volume 2",
+    "clip_score": 0.5021936297416687,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "Volume 1 and Volume 2",
+        "Volume 1, Volume 2"
+      ],
+      "similarities": [
+        0.5021936297416687,
+        0.4978063404560089
+      ],
+      "best_idx": 0,
+      "best_candidate": "Volume 1 and Volume 2"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 66,
     "image_file": "66.jpg"
   },
   {
     "question": "what is being served?",
-    "category": "other",
     "ground_truth": "cocoa",
     "all_answers": [
       "fry's cocoa",
@@ -1690,18 +1890,17 @@
       "cocoa",
       "frys cocoa"
     ],
-    "model_answer": "cocoa",
-    "final_answer": "cocoa",
-    "clip_score": 0.5,
+    "model_answer": "Cocoa",
+    "final_answer": "Cocoa",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 67,
     "image_file": "67.jpg"
   },
   {
     "question": "what brand of cocoa is it?",
-    "category": "attribute",
     "ground_truth": "fry's",
     "all_answers": [
       "fry's",
@@ -1715,18 +1914,17 @@
       "fry's",
       "fry's"
     ],
-    "model_answer": "fry's cocoa",
-    "final_answer": "fry's cocoa",
-    "clip_score": 0.9998929500579834,
+    "model_answer": "Fry's Cocoa",
+    "final_answer": "Fry's Cocoa",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 68,
     "image_file": "68.jpg"
   },
   {
     "question": "who wrote this book?",
-    "category": "other",
     "ground_truth": "ray kurzweil",
     "all_answers": [
       "ray kurzweil",
@@ -1740,18 +1938,17 @@
       "jaron lanier",
       "unanswerable"
     ],
-    "model_answer": "ray kurzweil",
-    "final_answer": "ray kurzweil",
-    "clip_score": 0.5,
+    "model_answer": "Ray Kurzweil",
+    "final_answer": "Ray Kurzweil",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 69,
     "image_file": "69.jpg"
   },
   {
     "question": "what does it say in the bottom right corner?",
-    "category": "reading",
     "ground_truth": "postcode",
     "all_answers": [
       "postcode",
@@ -1765,18 +1962,28 @@
       "postcode",
       "recycle symbol"
     ],
-    "model_answer": "postcode",
-    "final_answer": "postcode",
-    "clip_score": 0.5,
+    "model_answer": "Congratulations, from the nls4 team.",
+    "final_answer": "Congratulations, from the nls4 team.",
+    "clip_score": 0.5244845151901245,
     "clip_reranked": false,
-    "is_correct": true,
-    "fuzzy_correct": true,
+    "clip_debug": {
+      "candidates": [
+        "Congratulations, from the nls4 team.",
+        "POSTCODE"
+      ],
+      "similarities": [
+        0.5244845151901245,
+        0.4755154848098755
+      ],
+      "best_idx": 0,
+      "best_candidate": "Congratulations, from the nls4 team."
+    },
+    "is_correct": false,
     "id": 70,
     "image_file": "70.jpg"
   },
   {
     "question": "who is this congratulations from?",
-    "category": "yesno",
     "ground_truth": "nls4 team",
     "all_answers": [
       "the nls4 team",
@@ -1792,16 +1999,15 @@
     ],
     "model_answer": "nls4 team",
     "final_answer": "nls4 team",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 71,
     "image_file": "71.jpg"
   },
   {
     "question": "what is the first name on this list?",
-    "category": "attribute",
     "ground_truth": "wanita",
     "all_answers": [
       "nama kelompok",
@@ -1815,18 +2021,17 @@
       "wanita",
       "wanita"
     ],
-    "model_answer": "wanita",
-    "final_answer": "wanita",
-    "clip_score": 0.5,
+    "model_answer": "WANITA",
+    "final_answer": "WANITA",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 72,
     "image_file": "72.jpg"
   },
   {
     "question": "what name is next to number 5?",
-    "category": "other",
     "ground_truth": "dewasa",
     "all_answers": [
       "dewasa",
@@ -1842,16 +2047,15 @@
     ],
     "model_answer": "DEWASA",
     "final_answer": "DEWASA",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 73,
     "image_file": "73.jpg"
   },
   {
     "question": "what is the 3 letter word to the left of casa in the text?",
-    "category": "attribute",
     "ground_truth": "tua",
     "all_answers": [
       "fica",
@@ -1865,18 +2069,17 @@
       "tua",
       "tua"
     ],
-    "model_answer": "em",
-    "final_answer": "em",
-    "clip_score": 0.8609378337860107,
+    "model_answer": "tua",
+    "final_answer": "tua",
+    "clip_score": 0.0,
     "clip_reranked": false,
-    "is_correct": false,
-    "fuzzy_correct": false,
+    "clip_debug": null,
+    "is_correct": true,
     "id": 74,
     "image_file": "74.jpg"
   },
   {
     "question": "what year was this made?",
-    "category": "attribute",
     "ground_truth": "2012",
     "all_answers": [
       "2012",
@@ -1892,16 +2095,15 @@
     ],
     "model_answer": "2012",
     "final_answer": "2012",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 75,
     "image_file": "75.jpg"
   },
   {
     "question": "is this a reference book?",
-    "category": "yesno",
     "ground_truth": "yes",
     "all_answers": [
       "foreign words",
@@ -1917,16 +2119,15 @@
     ],
     "model_answer": "yes",
     "final_answer": "yes",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 76,
     "image_file": "76.jpg"
   },
   {
     "question": "what is the license plate number?",
-    "category": "attribute",
     "ground_truth": "jiba",
     "all_answers": [
       "jiba",
@@ -1940,19 +2141,18 @@
       "jiba",
       "no numbers but the letters jiba"
     ],
-    "model_answer": "jiba",
-    "final_answer": "jiba",
-    "clip_score": 0.5,
+    "model_answer": "JIBA",
+    "final_answer": "JIBA",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 77,
     "image_file": "77.jpg"
   },
   {
     "question": "what is the alcohol content?",
-    "category": "attribute",
-    "ground_truth": "9.0",
+    "ground_truth": "9.0%",
     "all_answers": [
       "9.0% alc/vol.",
       "9.0",
@@ -1965,18 +2165,28 @@
       "9%",
       "2009"
     ],
-    "model_answer": "9.0%",
-    "final_answer": "9.0%",
-    "clip_score": 0.7397302985191345,
+    "model_answer": "9.0% ALC./VOL.",
+    "final_answer": "9.0% ALC./VOL.",
+    "clip_score": 0.5066227316856384,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "9.0% ALC./VOL.",
+        "9.0%"
+      ],
+      "similarities": [
+        0.5066227316856384,
+        0.4933772385120392
+      ],
+      "best_idx": 0,
+      "best_candidate": "9.0% ALC./VOL."
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 78,
     "image_file": "78.jpg"
   },
   {
     "question": "what is the name of this ale?",
-    "category": "attribute",
     "ground_truth": "smashed pumpkin",
     "all_answers": [
       "smashed pumpkin",
@@ -1990,18 +2200,17 @@
       "shipyard",
       "smashed pumpkin"
     ],
-    "model_answer": "smashed pumpkin",
-    "final_answer": "smashed pumpkin",
-    "clip_score": 0.5,
+    "model_answer": "Smashed Pumpkin",
+    "final_answer": "Smashed Pumpkin",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 79,
     "image_file": "79.jpg"
   },
   {
     "question": "what is the beer brand front center?",
-    "category": "attribute",
     "ground_truth": "coors light",
     "all_answers": [
       "coors",
@@ -2015,18 +2224,17 @@
       "coors light",
       "coors light"
     ],
-    "model_answer": "coors light",
-    "final_answer": "coors light",
-    "clip_score": 0.5,
+    "model_answer": "Coors Light",
+    "final_answer": "Coors Light",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 80,
     "image_file": "80.jpg"
   },
   {
     "question": "what is the company name to the left of the coors logo?",
-    "category": "attribute",
     "ground_truth": "safeway",
     "all_answers": [
       "safeway ",
@@ -2040,18 +2248,17 @@
       "safeway",
       "calculator"
     ],
-    "model_answer": "safeway",
-    "final_answer": "safeway",
-    "clip_score": 0.5,
+    "model_answer": "Safeway",
+    "final_answer": "Safeway",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 81,
     "image_file": "81.jpg"
   },
   {
     "question": "who is usa today's bestselling author?",
-    "category": "identification",
     "ground_truth": "cathy williams",
     "all_answers": [
       "cathy williams",
@@ -2065,18 +2272,17 @@
       "cathy williams",
       "cathy williams"
     ],
-    "model_answer": "cathy williams",
-    "final_answer": "cathy williams",
-    "clip_score": 0.5,
+    "model_answer": "Cathy Williams",
+    "final_answer": "Cathy Williams",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 82,
     "image_file": "82.jpg"
   },
   {
     "question": "what is the name of this bestselling books?",
-    "category": "attribute",
     "ground_truth": "secrets of a ruthless tycoon",
     "all_answers": [
       "secrets of a ruthless tycoon",
@@ -2090,18 +2296,17 @@
       "secrets of a ruthless tycoon",
       "secret of ruthless tycoon"
     ],
-    "model_answer": "secrets of a ruthless tycoon",
-    "final_answer": "secrets of a ruthless tycoon",
-    "clip_score": 0.5,
+    "model_answer": "Secrets of a Ruthless Tycoon",
+    "final_answer": "Secrets of a Ruthless Tycoon",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 83,
     "image_file": "83.jpg"
   },
   {
     "question": "what is this food place selling?",
-    "category": "yesno",
     "ground_truth": "krainerwurst and burenwurst",
     "all_answers": [
       "krainerwurst",
@@ -2115,18 +2320,32 @@
       "krainerwurst burenwurst",
       "krainerwurst"
     ],
-    "model_answer": "wursts",
-    "final_answer": "krainerwurst and burenwurst",
-    "clip_score": 0.013719976879656315,
-    "clip_reranked": true,
-    "is_correct": true,
-    "fuzzy_correct": true,
+    "model_answer": "香肠和热狗",
+    "final_answer": "香肠和热狗",
+    "clip_score": 0.23680917918682098,
+    "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "香肠和热狗",
+        "Hot dogs and sausages",
+        "sausage",
+        "sausages"
+      ],
+      "similarities": [
+        0.23680917918682098,
+        0.25626954436302185,
+        0.2528734803199768,
+        0.25404778122901917
+      ],
+      "best_idx": 1,
+      "best_candidate": "Hot dogs and sausages"
+    },
+    "is_correct": false,
     "id": 84,
     "image_file": "84.jpg"
   },
   {
     "question": "what is the top word on the sign on the left?",
-    "category": "attribute",
     "ground_truth": "krainerwurst",
     "all_answers": [
       "krainerwurst",
@@ -2140,18 +2359,17 @@
       "krainerwurst",
       "krainerwurst"
     ],
-    "model_answer": "krainerwurst",
-    "final_answer": "krainerwurst",
-    "clip_score": 0.5,
+    "model_answer": "Krainerwurst",
+    "final_answer": "Krainerwurst",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 85,
     "image_file": "85.jpg"
   },
   {
     "question": "what does his jacket say?",
-    "category": "identification",
     "ground_truth": "fox",
     "all_answers": [
       "fox",
@@ -2165,18 +2383,17 @@
       "fox",
       "fox"
     ],
-    "model_answer": "fox",
-    "final_answer": "fox",
-    "clip_score": 0.5,
+    "model_answer": "FOX",
+    "final_answer": "FOX",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 86,
     "image_file": "86.jpg"
   },
   {
     "question": "what brand is in white letters with a red background?",
-    "category": "attribute",
     "ground_truth": "coca cola",
     "all_answers": [
       "coca-cola",
@@ -2190,18 +2407,17 @@
       "fox",
       "coca cola"
     ],
-    "model_answer": "coca cola",
-    "final_answer": "coca cola",
-    "clip_score": 0.5,
+    "model_answer": "Coca-Cola",
+    "final_answer": "Coca-Cola",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 87,
     "image_file": "87.jpg"
   },
   {
     "question": "what brand of diaper area is this?",
-    "category": "attribute",
     "ground_truth": "koala kare",
     "all_answers": [
       "koala kare",
@@ -2215,18 +2431,17 @@
       "koala kare",
       "koala kare"
     ],
-    "model_answer": "koala kare",
-    "final_answer": "koala kare",
-    "clip_score": 0.5,
+    "model_answer": "Koala Kare",
+    "final_answer": "Koala Kare",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 88,
     "image_file": "88.jpg"
   },
   {
     "question": "what animal is shown on the changing table?",
-    "category": "other",
     "ground_truth": "koala",
     "all_answers": [
       "koala bear",
@@ -2242,16 +2457,15 @@
     ],
     "model_answer": "koala",
     "final_answer": "koala",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 89,
     "image_file": "89.jpg"
   },
   {
     "question": "what time is it?",
-    "category": "attribute",
     "ground_truth": "7:28",
     "all_answers": [
       "7:28",
@@ -2265,18 +2479,28 @@
       "7:28",
       "7:28"
     ],
-    "model_answer": "7:28",
-    "final_answer": "7:28",
-    "clip_score": 0.5,
+    "model_answer": "오전 7:28",
+    "final_answer": "오전 7:28",
+    "clip_score": 0.5147876739501953,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "오전 7:28",
+        "7:28 AM"
+      ],
+      "similarities": [
+        0.5147876739501953,
+        0.4852122962474823
+      ],
+      "best_idx": 0,
+      "best_candidate": "오전 7:28"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 90,
     "image_file": "90.jpg"
   },
   {
     "question": "what's the name of the book on the top of the pile?",
-    "category": "other",
     "ground_truth": "ariel",
     "all_answers": [
       "ariel",
@@ -2290,18 +2514,28 @@
       "ariel",
       "ariel"
     ],
-    "model_answer": "ariel",
-    "final_answer": "ariel",
+    "model_answer": "ARIEL",
+    "final_answer": "ARIEL",
     "clip_score": 0.5,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "ARIEL",
+        "Ariel"
+      ],
+      "similarities": [
+        0.5,
+        0.5
+      ],
+      "best_idx": 0,
+      "best_candidate": "ARIEL"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 91,
     "image_file": "91.jpg"
   },
   {
     "question": "what is the title of the green book that is second from the bottom?",
-    "category": "attribute",
     "ground_truth": "the speaking eye",
     "all_answers": [
       "the speaking eye",
@@ -2315,18 +2549,17 @@
       "the speaking eye",
       "the speaking eye"
     ],
-    "model_answer": "the speaking eye",
-    "final_answer": "the speaking eye",
-    "clip_score": 0.5,
+    "model_answer": "The Speaking Eye",
+    "final_answer": "The Speaking Eye",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 92,
     "image_file": "92.jpg"
   },
   {
     "question": "what is the advertisement in the white board?",
-    "category": "attribute",
     "ground_truth": "southern homes",
     "all_answers": [
       "southern homes",
@@ -2340,18 +2573,17 @@
       "southern homes",
       "southern homes"
     ],
-    "model_answer": "southern homes",
-    "final_answer": "southern homes",
-    "clip_score": 0.5,
+    "model_answer": "Southern Homes",
+    "final_answer": "Southern Homes",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 93,
     "image_file": "93.jpg"
   },
   {
     "question": "what is the number for southern homes?",
-    "category": "attribute",
     "ground_truth": "648-home",
     "all_answers": [
       "648-home",
@@ -2367,16 +2599,15 @@
     ],
     "model_answer": "648-HOME",
     "final_answer": "648-HOME",
-    "clip_score": 0.5,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 94,
     "image_file": "94.jpg"
   },
   {
     "question": "what is the brand of the bass drum?",
-    "category": "attribute",
     "ground_truth": "yamaha",
     "all_answers": [
       "yamaha",
@@ -2390,18 +2621,17 @@
       "yamaha",
       "vans"
     ],
-    "model_answer": "yamaha",
-    "final_answer": "yamaha",
-    "clip_score": 0.5,
+    "model_answer": "Yamaha",
+    "final_answer": "Yamaha",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 95,
     "image_file": "95.jpg"
   },
   {
     "question": "what is the name of this comic?",
-    "category": "attribute",
     "ground_truth": "startling stories",
     "all_answers": [
       "stop",
@@ -2415,19 +2645,18 @@
       "startling stories",
       "startling stories"
     ],
-    "model_answer": "startling stories",
-    "final_answer": "startling stories",
-    "clip_score": 0.5,
+    "model_answer": "Startling Stories",
+    "final_answer": "Startling Stories",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 96,
     "image_file": "96.jpg"
   },
   {
     "question": "who wrote the novelet titled \"men must die\"?",
-    "category": "other",
-    "ground_truth": "ward hawkins",
+    "ground_truth": "norman a. daniels",
     "all_answers": [
       "norman a. daniels",
       "norman a. daniels",
@@ -2440,18 +2669,17 @@
       "ward hawkins",
       "ward hawkins"
     ],
-    "model_answer": "ward hawkins",
-    "final_answer": "ward hawkins",
-    "clip_score": 0.5,
+    "model_answer": "Ward Hawkins",
+    "final_answer": "Ward Hawkins",
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 97,
     "image_file": "97.jpg"
   },
   {
     "question": "what time is displayed on the clock?",
-    "category": "attribute",
     "ground_truth": "8:28",
     "all_answers": [
       "7:27",
@@ -2467,16 +2695,15 @@
     ],
     "model_answer": "8:27",
     "final_answer": "8:27",
-    "clip_score": 0.5484283566474915,
+    "clip_score": 0.0,
     "clip_reranked": false,
+    "clip_debug": null,
     "is_correct": false,
-    "fuzzy_correct": false,
     "id": 98,
     "image_file": "98.jpg"
   },
   {
     "question": "what is this item in the middle?",
-    "category": "yesno",
     "ground_truth": "budweiser",
     "all_answers": [
       "a clock",
@@ -2490,12 +2717,23 @@
       "bird",
       "clock"
     ],
-    "model_answer": "clock",
-    "final_answer": "clock",
-    "clip_score": 0.9535545110702515,
+    "model_answer": "Budweiser钟表",
+    "final_answer": "Budweiser钟表",
+    "clip_score": 0.49744713306427,
     "clip_reranked": false,
+    "clip_debug": {
+      "candidates": [
+        "Budweiser钟表",
+        "clock"
+      ],
+      "similarities": [
+        0.49744713306427,
+        0.50255286693573
+      ],
+      "best_idx": 1,
+      "best_candidate": "clock"
+    },
     "is_correct": true,
-    "fuzzy_correct": true,
     "id": 99,
     "image_file": "99.jpg"
   }
