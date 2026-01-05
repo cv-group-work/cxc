@@ -27,7 +27,7 @@ import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 
-from cxc.config import DATA_IMAGES, DATA_RESULTS, API_KEY
+from config import DATA_IMAGES, DATA_RESULTS, API_KEY
 # 导入公共功能模块中的辅助函数
 from vqa_common import (
     save_vqa_result,                      # 保存VQA结果到JSON

@@ -32,7 +32,7 @@ from datetime import datetime
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 # 导入配置模块
-from cxc.config import DATA_IMAGES, DATA_RESULTS, API_KEY, CLIP_RERANK, MODELS
+from config import DATA_IMAGES, DATA_RESULTS, API_KEY, CLIP_RERANK, MODELS
 
 # 导入公共功能模块
 from vqa_common import (
