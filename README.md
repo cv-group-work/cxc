@@ -1,3 +1,9 @@
+# 项目结构
+- main: 原始分支，没有调用第三方库代码量庞大，使用的是本地qwen-vl-4b模型，跑不动。
+- simplify: 最后**修改版本**，调用第三方库（huggingface,langchain）,代码量缩减了一半以上，使用的是qwen官方的qwen-vl-8b模型api。速度从几个小时缩减到几分钟。此分支的问题：把真实答案标签放到了候选答案中。
+- Optimization_1： 对simplify的存在的问题做了修复，候选答案替换qwen生成多个可能的答案。
+
+
 # Qwen3-VL + CLIP 视觉问答评估系统
 
 ## 项目概述
